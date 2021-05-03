@@ -1,0 +1,9 @@
+#
+#   Following varaibles need to be provided in a .env file:
+#
+
+# Database uri
+DB_URI = ""
+
+# Token secret for JWTs.
+TOKEN_SECRET = ""
