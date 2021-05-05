@@ -1,0 +1,35 @@
+<h1>
+    Vi ber om ursäkt, men...
+</h1>
+
+<p>
+    ... vi stötte på ett error under {{ errorSource }}.
+</p>
+
+<h2>
+    Potentiell lösning
+</h2>
+
+<p>
+    {% if solution %}
+        {{ solution }}
+    {% else %}
+        <p>
+            Tyvärr finns det ingen lösning beskriven ännu.
+        </p>
+    {% endif %}
+</p>
+
+<h2>
+    Error som skedde:
+</h2>
+
+<code>
+    {{ error }}
+</code>
+
+<h3>
+    <a href="https://github.com/PictureItLBS/pictureit/issues/new">
+        Rapportera gärna detta!
+    </a>
+</h3>
