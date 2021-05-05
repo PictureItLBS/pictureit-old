@@ -25,7 +25,15 @@ const userSchema = new mongoose.Schema({
         type: Array,
         default: []
     },
+    likes: {
+        type: Number,
+        default: 0
+    },
     likedPosts: {
+        type: Array,
+        default: []
+    },
+    posts: {
         type: Array,
         default: []
     }
