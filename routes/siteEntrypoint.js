@@ -6,7 +6,7 @@ const siteEntryoint = Router()
 siteEntryoint.get('/', (req, res) => res.render('pages/landing.njk'))
 
 // Register and signin
-siteEntryoint.get('/signin', (req, res) => res.render('pages/auth/login.njk'))
+siteEntryoint.get('/login', (req, res) => res.render('pages/auth/login.njk'))
 siteEntryoint.get('/register', (req, res) => res.render('pages/auth/register.njk'))
 
 // Main app

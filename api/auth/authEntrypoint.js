@@ -73,10 +73,10 @@ authApi.post(
     }
 )
 
-authApi.get(
+authApi.post(
     '/login',
     validate('username').isString().isAlphanumeric().isLength({ min: 1, max: 32 }),
-    validate('password').isLength({ min: 1 }),
+    validate('password').isString().isLength({ min: 1 }),
     async (req, res) => {
         // Check for errors
         const errors = validationResult(req)
@@ -132,6 +132,13 @@ authApi.get(
 
             // Send the user to the home/feed page.
             res.redirect('/home')
+        } else {
+            res.status(400).render(
+                'pages/errors/wrongPassword.njk',
+                {
+                    username: username
+                }
+            )
         }
     }
 )
