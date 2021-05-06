@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "../../../templates/defaultHeadTags.njk" %}
+    <link rel="stylesheet" type="text/css" href="/assets/css/myData.css">
+    <title>Min data</title>
+</head>
+<body class="my-data--grid">
+    <img src="/assets/resources/logo.png" class="profile-picture">
+    <main class="info-container">
+        <h1>
+            Din Information
+        </h1>
+
+        <h2>
+            Användarnamn
+        </h2>
+        <p>
+            {{ username }}
+        </p>
+
+        <h2>
+            Följer/följare
+        </h2>
+        <p>
+            {{ following }}/{{ followers }}
+        </p>
+
+        <h2>
+            Gillningar
+        </h2>
+        <p>
+            {{ likes }}
+        </p>
+
+        <h2>
+            Tillståndsnivå
+        </h2>
+        <p>
+            {{ permissionLevel }}
+        </p>
+
+        <h2>
+            Antal posts
+        </h2>
+        <p>
+            {{ postsAmount }}
+        </p>
+
+        <h2>
+            Posts du gillat
+        </h2>
+        <p>
+            {{ likedPostsAmount }}
+        </p>
+
+        <a href="#" id="download-my-data">Ladda ned min data</a>
+        <a href="#" id="delete-account">Ta bort mitt konto</a>
+
+        <div class="buttons">
+            <button>Ändra Lösenord</button>
+            <button>Ändra Profilbild</button>
+            <button>Ändra Användarnamn</button>
+        </div>
+    </main>
+</body>
+</html>

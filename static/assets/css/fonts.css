@@ -1,0 +1,42 @@
+@font-face {
+    font-family: 'Lexend Thin';
+    src: url(/assets/fonts/Lexend-Thin.ttf);
+}
+
+@font-face {
+    font-family: 'Lexend Light';
+    src: url(/assets/fonts/Lexend-Light.ttf);
+}
+
+@font-face {
+    font-family: 'Lexend Regular';
+    src: url(/assets/fonts/Lexend-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Lexend Medium';
+    src: url(/assets/fonts/Lexend-Medium.ttf);
+}
+
+@font-face {
+    font-family: 'Lexend SemiBold';
+    src: url(/assets/fonts/Lexend-SemiBold.ttf);
+}
+
+@font-face {
+    font-family: 'Lexend Bold';
+    src: url(/assets/fonts/Lexend-Bold.ttf);
+}
+
+@font-face {
+    font-family: 'Lexend ExtraBold';
+    src: url(/assets/fonts/Lexend-ExtraBold.ttf);
+}
+
+/*
+    Antialias and so, kinda
+*/
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

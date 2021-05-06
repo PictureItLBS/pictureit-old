@@ -1,0 +1,39 @@
+.my-data--grid {
+    display: grid;
+    grid-template-areas: 'pfp info';
+    grid-template-columns: auto 1fr;
+    place-items: center start;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+.profile-picture {
+    grid-area: pfp;
+
+    width: 25vw;
+    height: auto;
+
+    margin: 0 5vmin 0 10vw;
+}
+
+.info-container {
+    grid-area: info;
+
+    background-color: var(--standout);
+
+    width: 50vw;
+    height: fit-content;
+
+    padding: 3rem 4rem;
+    border-radius: 1.6rem 1.6rem 6.4rem 1.6rem;
+}
+
+a {
+    display: block;
+    color: var(--primary);
+}
+
+#delete-account {
+    color: var(--destructive);
+}
