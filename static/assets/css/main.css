@@ -1,4 +1,5 @@
 @import 'fonts.css';
+@import 'scaling.css';
 
 :root {
     --text: #F2F2F2;
@@ -26,4 +27,17 @@ button {
     color: var(--primary);
     border-color: var(--primary);
     background-color: transparent;
+}
+
+h1 {
+    font-family: 'Lexend Medium';
+    font-size: 3.6rem;
+    font-weight: normal;
+
+    margin-bottom: .4em;
+}
+
+p {
+    font-size: 1.8rem;
+    margin-bottom: .4em;
 }

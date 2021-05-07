@@ -1,0 +1,13 @@
+form {
+    background-color: var(--standout);
+}
+
+input {
+    font-size: 1.8rem;
+    display: block;
+    margin-bottom: 2rem;
+}
+
+input[type="submit"] {
+    margin-bottom: 0;
+}

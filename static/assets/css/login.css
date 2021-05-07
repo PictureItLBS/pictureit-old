@@ -1,0 +1,23 @@
+.logo-container, .form-container {
+    position: absolute;
+}
+
+.logo-container {
+    right: 15vw;
+    height: 30vmax;
+}
+
+.form-container {
+    left: 15vw;
+    height: fit-content;
+
+    background-color: var(--standout);
+
+    padding: 3rem 4rem;
+}
+
+h1, p {
+    color: var(--primary);
+    margin-bottom: .8em;
+}
+
