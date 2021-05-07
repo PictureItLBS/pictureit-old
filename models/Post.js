@@ -2,17 +2,19 @@ import mongoose from 'mongoose'
 
 const postSchema = new mongoose.Schema({
     image: {
-        type: String,
-        required: true,
-        min: 1
+        data: Buffer,
+        contentType: String
     },
     caption: {
         type: String,
         required: true,
         min: 1,
-        max: 32
+        max: 512
     },
-    likedPosts: {
+    date: {
+        type: Date
+    },
+    likedBy: {
         type: Array,
         default: []
     }

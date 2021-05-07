@@ -29,8 +29,32 @@
     border-radius: 1.6rem 1.6rem 6.4rem 1.6rem;
 }
 
+.info-table {
+    display: grid;
+    grid-template-areas: 'col-1 col-2';
+    grid-template-columns: 1fr 1fr;
+
+    margin-top: 3rem;
+}
+
+.info-table > .col-1 {
+    grid-area: col-1;
+}
+
+.info-table > .col-2 {
+    grid-area: col-2;
+}
+
+h1, h2 {
+    color: var(--primary);
+}
+
+p {
+    margin-bottom: 3rem;
+}
+
 a {
-    display: block;
+    display: inline;
     color: var(--primary);
 }
 

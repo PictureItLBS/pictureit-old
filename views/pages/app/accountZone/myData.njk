@@ -12,50 +12,58 @@
             Din Information
         </h1>
 
-        <h2>
-            Användarnamn
-        </h2>
-        <p>
-            {{ username }}
-        </p>
+        <div class="info-table">
+            <div class="col-1">
+                <h2>
+                    Användarnamn
+                </h2>
+                <p>
+                    {{ username }}
+                </p>
 
-        <h2>
-            Följer/följare
-        </h2>
-        <p>
-            {{ following }}/{{ followers }}
-        </p>
+                <h2>
+                    Följer/följare
+                </h2>
+                <p>
+                    {{ following }}/{{ followers }}
+                </p>
 
-        <h2>
-            Gillningar
-        </h2>
-        <p>
-            {{ likes }}
-        </p>
+                <h2>
+                    Gillningar
+                </h2>
+                <p>
+                    {{ likes }}
+                </p>
+            </div>
+            <div class="col-2">
+                <h2>
+                    Tillståndsnivå
+                </h2>
+                <p>
+                    {{ permissionLevel }}
+                </p>
 
-        <h2>
-            Tillståndsnivå
-        </h2>
-        <p>
-            {{ permissionLevel }}
-        </p>
+                <h2>
+                    Antal posts
+                </h2>
+                <p>
+                    {{ postsAmount }}
+                </p>
 
-        <h2>
-            Antal posts
-        </h2>
-        <p>
-            {{ postsAmount }}
-        </p>
+                <h2>
+                    Posts du gillat
+                </h2>
+                <p>
+                    {{ likedPostsAmount }}
+                </p>
 
-        <h2>
-            Posts du gillat
-        </h2>
-        <p>
-            {{ likedPostsAmount }}
-        </p>
+            </div>
+        </div>
 
-        <a href="#" id="download-my-data">Ladda ned min data</a>
-        <a href="#" id="delete-account">Ta bort mitt konto</a>
+        <p class="links">
+            <a href="#" id="download-my-data">Ladda ned min data</a> <br>
+            <a href="#" id="delete-account">Ta bort mitt konto</a>
+        </p>
 
         <div class="buttons">
             <button>Ändra Lösenord</button>
