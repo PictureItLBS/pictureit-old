@@ -1,6 +1,10 @@
 import mongoose from 'mongoose'
 
 const postSchema = new mongoose.Schema({
+    publisher: {
+        type: String,
+        required: true
+    },
     image: {
         data: Buffer,
         contentType: String
