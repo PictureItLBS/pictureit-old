@@ -5,6 +5,7 @@
     --text: #F2F2F2;
     --surface: #222222;
     --standout: #343434;
+    --backdrop: #F2F2F219;
     --primary: #53FB5E;
     --accent: #AC53FB;
     --destructive: #FF4B4B;
@@ -23,11 +24,9 @@ body {
     font-family: 'Lexend Regular';
 }
 
-button {
-    color: var(--primary);
-    border-color: var(--primary);
-    background-color: transparent;
-}
+/*
+    TEXT
+*/
 
 h1 {
     font-family: 'Lexend Medium';
@@ -41,12 +40,24 @@ p {
     font-size: 1.8rem;
     margin-bottom: .4em;
 }
-nav.sidebar {	
-	display: block;
-	color: var(--surface)
-	box-shadow: 2px 2px 2px 2px
-	font-size: 2.4rem
-	
-	
-	
+
+a {
+    color: var(--accent);
+}
+
+button {
+    color: var(--primary);
+    border-color: var(--primary);
+    background-color: transparent;
+}
+
+
+/*
+    SIDEBAR
+*/
+nav.sidebar {
+    display: block;
+    color: var(--surface);
+    box-shadow: 2px 2px 2px 2px;
+    font-size: 2.4rem;
 }

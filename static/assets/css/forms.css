@@ -1,13 +1,44 @@
-form {
-    background-color: var(--standout);
+input {
+    display: block;
+    width: 100%;
+
+    font-size: 1.8rem;
+    font-family: 'Lexend Light';
+
+    color: var(--text);
+    background-color: var(--surface);
+
+    padding: .7rem 1.2rem;
+    margin-bottom: 2rem;
+
+    border: .3rem solid var(--surface);
+    border-radius: .4rem .4rem 1.2rem .4rem;
+    outline: 0 none transparent;
 }
 
-input {
-    font-size: 1.8rem;
-    display: block;
-    margin-bottom: 2rem;
+input::placeholder {
+    font-family: 'Lexend Regular';
+}
+
+input:hover {
+    border-radius: .8rem .8rem 1.6rem .8rem;
+}
+
+input:active, input:focus {
+    outline: 0 none transparent;
+    border: .3rem solid var(--primary)
 }
 
 input[type="submit"] {
+    width: fit-content;
+    font-family: 'Lexend Medium';
+
     margin-bottom: 0;
+    padding: 1.2rem 2.4rem;
+
+    color: var(--primary);
+    background-color: transparent;
+
+    border: .3rem solid var(--primary);
+    cursor: pointer;
 }

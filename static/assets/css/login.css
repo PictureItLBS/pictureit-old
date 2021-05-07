@@ -1,19 +1,32 @@
 .logo-container, .form-container {
     position: absolute;
+    display: grid;
+    place-items: center;
+    height: 100%;
 }
 
 .logo-container {
     right: 15vw;
-    height: 30vmax;
 }
 
 .form-container {
     left: 15vw;
+}
+
+.logo {
+    height: 30vmax;
+}
+
+form {
+    width: 50vw;
     height: fit-content;
 
-    background-color: var(--standout);
+    background-color: var(--backdrop);
+    backdrop-filter: blur(20px) opacity(100%);
 
-    padding: 3rem 4rem;
+    padding: 4rem 5rem;
+
+    border-radius: 1.6rem 1.6rem 6.4rem 1.6rem;
 }
 
 h1, p {
@@ -21,3 +34,17 @@ h1, p {
     margin-bottom: .8em;
 }
 
+input[type="submit"] {
+    display: inline;
+
+    color: var(--surface);
+    background-color: var(--primary);
+
+    margin-top: 1rem;
+}
+
+.help-link {
+    color: var(--primary);
+    font-size: 1.8rem;
+    margin-left: 2rem;
+}

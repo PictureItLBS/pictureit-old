@@ -1,5 +1,35 @@
-<form action="/api/auth/register" method="post">
-    <input type="text" name="username" id="username" placeholder="Användarnamn">
-    <input type="text" name="password" id="password" placeholder="Lösenord">
-    <input type="submit" value="Registera dig!">
-</form>
+<!DOCTYPE html>
+<html lang="se">
+<head>
+    {% include "../../templates/defaultHeadTags.njk" %}
+    <link rel="stylesheet" type="text/css" href="/assets/css/forms.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/login.css">
+    <title>Logga In - PictureIt</title>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="/assets/resources/logo.svg" class="logo">
+    </div>
+
+    <div class="form-container">
+        <form action="/api/auth/register" method="post">
+            <h1>
+                Registrera Dig
+            </h1>
+
+            <p>Användarnamn</p>
+            <input type="text" name="username" id="username" placeholder="FancyCat">
+
+            <p>Lösenord</p>
+            <input type="password" name="password" id="password" placeholder="password1234">
+
+            <p class="agreement">
+                Genom att registrera dig godkänner du <u>användaravtalet</u> och <u>sekretesspolicyn</u>.
+            </p>
+
+            <input type="submit" value="Registrera">
+            <a href="/app/help" class="help-link">Behöver du hjälp?</a>
+        </form>
+    </div>
+</body>
+</html>
