@@ -126,7 +126,7 @@ authApi.post(
                 'apiToken',
                 userApiToken,
                 {
-                    expires: new Date(Date.now() + 360000) // One hour in milliseconds.
+                    expires: new Date(Date.now() + 3600000) // One hour in milliseconds.
                 }
             )
 
