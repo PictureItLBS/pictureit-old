@@ -30,7 +30,7 @@ input:active, input:focus {
 }
 
 input[type="submit"] {
-    width: fit-content;
+    width: auto;
     font-family: 'Lexend Medium';
 
     margin-bottom: 0;
