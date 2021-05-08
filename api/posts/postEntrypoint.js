@@ -32,9 +32,9 @@ postApi.post(
             return res.status(400).render(
                 'pages/errors/genericError.njk',
                 {
-                    errorSource: "skapande av konto",
-                    errorCode: "Account Creation Validation Failed",
-                    solution: "Den informationen du slog in kan ha innehållt icke-tillåtna tecken. (T.ex. likhetstecken i användarnamnet.)",
+                    errorSource: "uppladdning av inlägg",
+                    errorCode: "Missing Caption Text",
+                    solution: "Du glömde att skriva in en bildtext, gå gärna tillbaka och skriv en! :)",
                     error: errors.array().toString()
                 }
             )
