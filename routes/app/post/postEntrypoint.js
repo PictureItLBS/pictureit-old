@@ -24,7 +24,7 @@ postEntrypoint.get('/view/:id', async (req, res) => {
             }
         )
 
-    const imageURL = `data:image/png;base64,${post.image.data.toString('base64')}`
+    const imageURL = `data:${post.image.contentType};base64,${post.image.data.toString('base64')}`
 
     const publisher = await User.findOne({ _id: post.publisher })
 
