@@ -97,6 +97,12 @@ postApi.post('/like/:id',  async (req, res) => {
     post.likedBy.push(decodedToken._id)
     await post.updateOne({ likedBy: post.likedBy })
 
+    // Increment pblisher's total like count.
+    const publisher = await User.findOne({ _id: post.publisher })
+    await publisher.updateOne({ likes: publisher.likes + 1 })
+
+
+    // Add to the user's collection of liked posts.
     const userInDB = await User.findOne({ _id: decodedToken._id })
     userInDB.likedPosts.push(post._id)
     await userInDB.updateOne({ likedPosts: userInDB.likedPosts })
@@ -132,6 +138,11 @@ postApi.delete('/unlike/:id',  async (req, res) => {
     post.likedBy.splice(post.likedBy.indexOf(decodedToken._id), 1)
     await post.updateOne({ likedBy: post.likedBy })
 
+    // Decrease pblisher's total like count.
+    const publisher = await User.findOne({ _id: post.publisher })
+    await publisher.updateOne({ likes: publisher.likes - 1 })
+
+    // Delete from the user's collection of liked posts.
     const userInDB = await User.findOne({ _id: decodedToken._id })
     userInDB.likedPosts.splice(userInDB.likedPosts.indexOf(post._id), 1)
     await userInDB.updateOne({ likedPosts: userInDB.likedPosts })
