@@ -12,7 +12,7 @@ const postApi = Router()
 postApi.post(
     '/new',
     fileUpload.single('image'),
-    validate('caption').isString().isLength({ min: 1, max: 512 }),
+    validate('caption').isString().isLength({ min: 1, max: 512 }).trim().escape(),
     async (req, res) => {
         const decodedToken = verifyToken(req.cookies.apiToken)
         if (!decodedToken)
