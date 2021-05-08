@@ -25,7 +25,7 @@ postApi.post('/new', fileUpload.single('image'), async (req, res) => {
 
     const savedPost = await post.save()
 
-    res.redirect('/app/post/' + savedPost._id)
+    res.redirect('/app/post/view/' + savedPost._id)
 })
 
 postApi.get('/show', async (req, res) => {

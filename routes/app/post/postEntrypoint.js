@@ -6,7 +6,7 @@ import User from '../../../models/User.js'
 
 const postEntrypoint = Router()
 
-postEntrypoint.get('/:id', async (req, res) => {
+postEntrypoint.get('/view/:id', async (req, res) => {
     // Try to verify the token, if the decodedToken is null/empty, it is not verified.
     const decodedToken = verifyToken(req.cookies.apiToken)
     if (!decodedToken)
@@ -28,12 +28,17 @@ postEntrypoint.get('/:id', async (req, res) => {
 
     const publisher = await User.findOne({ _id: post.publisher })
 
+    const publishDate = `${post?.date?.toLocaleTimeString('sv-SE').split(':')[0]}:${post?.date?.toLocaleTimeString('sv-SE').split(':')[1]} - ${post?.date?.toLocaleDateString('sv-SE').split('-').reverse().join('/')}`
+
     res.render(
         'pages/app/post.njk', 
-        { 
+        {
+            postID: post?._id,
             publisher: publisher?.name,
             image: imageURL,
-            caption: post?.caption
+            caption: post?.caption,
+            likesAmount: post?.likedBy?.length,
+            publishDate: publishDate
         }
     )
 })

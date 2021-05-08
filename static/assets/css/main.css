@@ -5,6 +5,7 @@
     --text: #F2F2F2;
     --surface: #222222;
     --standout: #343434;
+    --darker: #181818;
     --backdrop: #F2F2F219;
     --primary: #53FB5E;
     --accent: #AC53FB;
@@ -77,6 +78,19 @@ button {
 
 button:hover {
     border-radius: .8rem .8rem 1.6rem .8rem;
+}
+
+
+/*
+    Icons
+*/
+span.icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+span.icon > * {
+    fill: var(--text);
 }
 
 
