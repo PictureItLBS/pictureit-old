@@ -152,13 +152,43 @@ postApi.delete('/unlike/:id',  async (req, res) => {
     })
 })
 
-postApi.get('/show', async (req, res) => {
-    const posts = await Post.find({})
+postApi.get('/rawimage/render/:id', async (req, res) => {
+    const decodedToken = verifyToken(req.cookies.apiToken)
+    if (!decodedToken)
+        return res.status(401).render('pages/errors/tokenExpired.njk')
 
-    const buffer = posts[0].image.data
-    const imageURL = `data:${posts[0].image.contentType};base64,${buffer.toString('base64')}`
+    const post = await Post.findOne({ _id: req.params.id })
+    if (!post)
+        return res.status(400).json({
+            success: false,
+            error: "Image doesn't exist."
+        })
 
-    res.render('pages/app/post.njk', { image: imageURL })
+    const buffer = post.image.data
+    const imageURL = `data:${post.image.contentType};base64,${buffer.toString('base64')}`
+
+    res.render('pages/app/viewImage.njk', { imageDataUrl: imageURL })
+})
+
+postApi.get('/rawimage/string/:id', async (req, res) => {
+    const decodedToken = verifyToken(req.cookies.apiToken)
+    if (!decodedToken)
+        return res.status(401).render('pages/errors/tokenExpired.njk')
+
+    const post = await Post.findOne({ _id: req.params.id })
+    if (!post)
+        return res.status(400).json({
+            success: false,
+            error: "Image doesn't exist."
+        })
+
+    const buffer = post.image.data
+    const imageURL = `data:${post.image.contentType};base64,${buffer.toString('base64')}`
+
+    res.json({
+        success: true,
+        image: imageURL
+    })
 })
 
 export default postApi
