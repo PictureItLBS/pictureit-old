@@ -59,10 +59,24 @@ body.view-single-post .post {
     justify-content: space-between;
 }
 
-.action {
+.icon.action {
     cursor: pointer;
+
+    width: 5rem;
+    height: 5rem;
+
+    margin-left: -.6rem;
+    margin-bottom: 1rem;
+}
+
+.action > * {
+    transition: fill .5s;
 }
 
 .action:hover > * {
-    fill: red;
+    fill: var(--primary);
+}
+
+.action.active > * {
+    fill: var(--accent)
 }
