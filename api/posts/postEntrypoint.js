@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import fileUpload from '../../libs/fileUpload.js'
 import Post from '../../models/Post.js'
+import User from '../../models/User.js'
 import verifyToken from '../../libs/verifyToken.js'
 import { body as validate, validationResult } from 'express-validator'
 
@@ -57,6 +58,76 @@ postApi.post(
         res.redirect('/app/post/view/' + savedPost._id)
     }
 )
+
+postApi.post('/like/:id',  async (req, res) => {
+    const decodedToken = verifyToken(req.cookies.apiToken)
+    if (!decodedToken)
+        return res.status(401).render('pages/errors/tokenExpired.njk')
+
+    const post = await Post.findOne({ _id: req.params.id })
+    if (!post)
+        return res.status(400).render(
+            'pages/errors/genericError.njk',
+            {
+                errorSource: "gillning av inlägg",
+                errorCode: "Post Does Not Exist",
+                solution: "Posten du letar efter existerar inte. Den kan ha blivit borttagen.",
+                error: null
+            }
+        )
+
+    if (post.likedBy.includes(decodedToken._id))
+        return res.json({
+            success: false,
+            error: "You have already liked that post."
+        })
+
+    post.likedBy.push(decodedToken._id)
+    await post.updateOne({ likedBy: post.likedBy })
+
+    const userInDB = await User.findOne({ _id: decodedToken._id })
+    userInDB.likedPosts.push(post._id)
+    await userInDB.updateOne({ likedPosts: userInDB.likedPosts })
+
+    res.json({
+        success: true
+    })
+})
+
+postApi.delete('/unlike/:id',  async (req, res) => {
+    const decodedToken = verifyToken(req.cookies.apiToken)
+    if (!decodedToken)
+        return res.status(401).render('pages/errors/tokenExpired.njk')
+
+    const post = await Post.findOne({ _id: req.params.id })
+    if (!post)
+        return res.status(400).render(
+            'pages/errors/genericError.njk',
+            {
+                errorSource: "gillning av inlägg",
+                errorCode: "Post Does Not Exist",
+                solution: "Posten du letar efter existerar inte. Den kan ha blivit borttagen.",
+                error: null
+            }
+        )
+
+    if (!post.likedBy.includes(decodedToken._id))
+        return res.json({
+            success: false,
+            error: "You haven't liked that post."
+        })
+
+    post.likedBy.splice(post.likedBy.indexOf(decodedToken._id), 1)
+    await post.updateOne({ likedBy: post.likedBy })
+
+    const userInDB = await User.findOne({ _id: decodedToken._id })
+    userInDB.likedPosts.splice(userInDB.likedPosts.indexOf(post._id), 1)
+    await userInDB.updateOne({ likedPosts: userInDB.likedPosts })
+
+    res.json({
+        success: true
+    })
+})
 
 postApi.get('/show', async (req, res) => {
     const posts = await Post.find({})

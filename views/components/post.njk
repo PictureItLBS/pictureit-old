@@ -7,11 +7,11 @@
         <h1 class="post-publisher">{{ publisher }}</h1>
         <p class="post-caption">{{ caption }}</p>
         <div class="post-actions">
-            <span class="icon action action-like active" icon="like" id="{{ postID }}"></span>
+            <span class="icon action action-like {{ isLiked }}" icon="like" id="{{ postID }}"></span>
             <span class="icon action action-share" icon="share" id="{{ postID }}"></span>
         </div>
         <div class="post-info">
-            <p class="post-info-likes-amount">{{ likesAmount }} gillningar</p>
+            <p class="post-info-likes-amount"><span class="like-amount" postID="{{ postID }}">{{ likesAmount }}</span> gillningar</p>
             <p class="post-info-date">{{ publishDate }}</p>
         </div>
     </div>

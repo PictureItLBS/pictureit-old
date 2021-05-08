@@ -28,6 +28,8 @@ postEntrypoint.get('/view/:id', async (req, res) => {
 
     const publisher = await User.findOne({ _id: post.publisher })
 
+    const isLiked = post.likedBy.includes(decodedToken._id) ? 'active' : ''
+
     const publishDate = `${post?.date?.toLocaleTimeString('sv-SE').split(':')[0]}:${post?.date?.toLocaleTimeString('sv-SE').split(':')[1]} - ${post?.date?.toLocaleDateString('sv-SE').split('-').reverse().join('/')}`
 
     res.render(
@@ -38,6 +40,7 @@ postEntrypoint.get('/view/:id', async (req, res) => {
             image: imageURL,
             caption: post?.caption,
             likesAmount: post?.likedBy?.length,
+            isLiked: isLiked,
             publishDate: publishDate
         }
     )

@@ -19,7 +19,7 @@ const postSchema = new mongoose.Schema({
         type: Date
     },
     likedBy: {
-        type: Array,
+        type: [String],
         default: []
     }
 })

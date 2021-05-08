@@ -18,11 +18,11 @@ const userSchema = new mongoose.Schema({
         default: 0
     },
     followers: {
-        type: Array,
+        type: [String],
         default: []
     },
     following: {
-        type: Array,
+        type: [String],
         default: []
     },
     likes: {
@@ -30,11 +30,11 @@ const userSchema = new mongoose.Schema({
         default: 0
     },
     likedPosts: {
-        type: Array,
+        type: [String],
         default: []
     },
     posts: {
-        type: Array,
+        type: [String],
         default: []
     }
 })

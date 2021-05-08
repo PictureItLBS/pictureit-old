@@ -13,15 +13,43 @@ export default function initPosts() {
 
     // Like buttons
     document.querySelectorAll('.action-like').forEach(element => {
-        element.addEventListener('click', ev => {
+        element.addEventListener('click', async ev => {
             const classList = element.classList
 
             if (classList.contains('active')) {
                 // Unlike
+                const unlikeReq = await fetch(
+                    `/api/posts/unlike/${element.id}`,
+                    {
+                        method: 'DELETE'
+                    }
+                )
+
+                const status = await unlikeReq.json()
+
+                if (!status.success)
+                    return console.log(status)
+
                 classList.remove('active')
+                const likeAmount = document.querySelector(`span.like-amount[postID="${element.id}"]`)
+                likeAmount.innerHTML = parseInt(likeAmount.innerHTML) - 1
             } else {
                 // Like
+                const likeReq = await fetch(
+                    `/api/posts/like/${element.id}`,
+                    {
+                        method: 'POST'
+                    }
+                )
+
+                const status = await likeReq.json()
+
+                if (!status.success)
+                    return console.log(status)
+
                 classList.add('active')
+                const likeAmount = document.querySelector(`span.like-amount[postID="${element.id}"]`)
+                likeAmount.innerHTML = parseInt(likeAmount.innerHTML) + 1
             }
         })
     })
