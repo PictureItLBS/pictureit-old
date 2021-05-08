@@ -13,6 +13,10 @@ const userSchema = new mongoose.Schema({
         min: 1,
         max: 1024
     },
+    profilePicture: {
+        data: Buffer,
+        contentType: String
+    },
     permissionLevel: {
         type: Number,
         default: 0

@@ -47,6 +47,10 @@ authApi.post(
         const user = new User({
             name: username,
             password: hashedPassword,
+            profilePicture: {
+                data: null,
+                contentType: null
+            },
             permissionLevel: 0,
             follows: [],
             following: [],

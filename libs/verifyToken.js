@@ -5,7 +5,12 @@ export default function verifyToken(token) {
         return null
 
     try {
-        return jwt.verify(token, process.env.TOKEN_SECRET)
+        const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET)
+
+        if (!decodedToken.permissionLevel)
+            return false
+
+        return decodedToken
     } catch (err) {
         return false
     }

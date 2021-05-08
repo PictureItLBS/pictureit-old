@@ -14,11 +14,13 @@ profileEntrypoint.get('/mydata', async (req, res) => {
 
     // Fetch the user from the database
     const userInDatabase = await User.findOne({ _id: decodedToken._id })
+    const profilePictureUrl = `data:${userInDatabase.profilePicture.contentType};base64,${userInDatabase.profilePicture.data.toString('base64')}`
 
     res.render(
         'pages/app/accountZone/myData.njk',
         {
             username: userInDatabase.name,
+            profilePictureUrl: profilePictureUrl,
             following: userInDatabase.following?.length,
             followers: userInDatabase.followers?.length,
             likes: userInDatabase.likes,
