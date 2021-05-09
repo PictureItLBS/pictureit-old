@@ -80,3 +80,15 @@ body.view-single-post .post {
 .action.active > * {
     fill: var(--accent)
 }
+
+.action-delete {
+    margin: 1.5rem 1rem;
+    font-size: 1.8rem;
+    cursor: pointer;
+
+    transition: color .3s;
+}
+
+.action-delete:hover {
+    color: var(--destructive);
+}

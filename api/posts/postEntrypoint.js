@@ -52,6 +52,43 @@ postApi.post(
     }
 )
 
+postApi.delete('/delete/:id', async (req, res) => {
+    const decodedToken = verifyToken(req.cookies.apiToken)
+    if (decodedToken.invalid)
+        return decodedToken.action(res)
+
+    const post = await Post.findOne({ _id: req.params.id })
+    if (!post)
+        return res.status(400).json({
+            success: false,
+            error: "Post doesn't exist."
+        })
+
+    // If the user is not a teacher, and does not own the post, fail.
+    if (decodedToken.permissionLevel < 2 && post.publisher !== decodedToken._id)
+        return res.status(400).json({
+            success: false,
+            error: "That's not your post!"
+        })
+
+    // Remove this post from all liked-collections for all users. (How to explain in words?)
+    post.likedBy?.forEach(async userID => {
+        const user = await User.findOne({ _id: userID })
+        user.likedPosts.splice(user.likedPosts.indexOf(post._id), 1)
+        await user.updateOne({ likedPosts: user.likedPosts })
+    })
+
+    // Remove likes from the publisher's total-likes-counter.
+    const user = await User.findOne({ _id: decodedToken._id })
+    await user.updateOne({ likes: user.likes - post.likedBy?.length })
+
+    await Post.deleteOne({ _id: post._id })
+
+    res.json({
+        success: true
+    })
+})
+
 postApi.get('/rawimage/render/:id', async (req, res) => {
     const decodedToken = verifyToken(req.cookies.apiToken)
     if (decodedToken.invalid)
