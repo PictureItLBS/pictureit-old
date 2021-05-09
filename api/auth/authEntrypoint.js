@@ -36,7 +36,7 @@ authApi.post(
             return res.status(400).render(
                 'pages/errors/userAlreadyExists.njk',
                 {
-                    username: username
+                    username
                 }
             )
 
@@ -101,23 +101,23 @@ authApi.post(
         const { username, password } = req.body
 
         // Check if the user exists in the database; if not, you can't sign in.
-        const userInDatabase = await User.findOne({ name: username })
-        if (!userInDatabase)
+        const user = await User.findOne({ name: username })
+        if (!user)
             return res.status(400).render(
                 'pages/errors/userDoesNotExist.njk',
                 {
-                    username: username
+                    username
                 }
             )
 
-        const match = await bcrypt.compare(password, userInDatabase.password)
+        const match = await bcrypt.compare(password, user.password)
         if (match) {
             // Create an API token for the user that lasts one hour.
             const userApiToken = jwt.sign(
                 {
-                    _id: userInDatabase._id,
-                    name: userInDatabase.name,
-                    permissionLevel: userInDatabase.permissionLevel
+                    _id: user._id,
+                    name: user.name,
+                    permissionLevel: user.permissionLevel
                 },
                 process.env.TOKEN_SECRET,
                 {
@@ -135,12 +135,12 @@ authApi.post(
             )
 
             // Send the user to the home/feed page.
-            res.redirect('/home')
+            res.redirect('/app/home')
         } else {
             res.status(400).render(
                 'pages/errors/wrongPassword.njk',
                 {
-                    username: username
+                    username
                 }
             )
         }

@@ -1,1 +1,1 @@
-export default ["png", "jpg", "jpeg", "gif"]
+export default ["image/png", "image/jpg", "image/jpeg", "image/gif"]

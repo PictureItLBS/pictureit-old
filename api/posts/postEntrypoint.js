@@ -4,41 +4,22 @@ import Post from '../../models/Post.js'
 import User from '../../models/User.js'
 import verifyToken from '../../libs/verifyToken.js'
 import { body as validate, validationResult } from 'express-validator'
-import allowedMimeTypes from '../../libs/allowedMimeTypes.js'
 
 
 const postApi = Router()
 
 postApi.post(
     '/new',
-    fileUpload.single('image'),
+    fileUpload.multer.single('image'),
     validate('caption').isString().isLength({ min: 1, max: 512 }).trim().escape(),
     async (req, res) => {
         const decodedToken = verifyToken(req.cookies.apiToken)
         if (decodedToken.invalid)
             return decodedToken.action(res)
 
-        if (!req.file)
-            return res.status(400).render(
-                'pages/errors/genericError.njk',
-                {
-                    errorSource: "uppladdning av inlägg",
-                    errorCode: "Missing Image File",
-                    solution: "Det ser ut som att du glömde att ladda upp en bild.",
-                    error: null
-                }
-            )
-
-        if (!allowedMimeTypes.includes(req.file.mimetype.split('/')[1]))
-            return res.status(400).render(
-                'pages/errors/genericError.njk',
-                {
-                    errorSource: "uppladdning av inlägg",
-                    errorCode: "Invalid File Format",
-                    solution: "Det ser ut som att du laddade upp en bild med ett icke-tillåtet format. Tillåtna format är: png, jpg/jpeg, gif",
-                    error: null
-                }
-            )
+        const fileValidation = fileUpload.validate(req.file)
+        if (fileValidation.errors)
+            return fileValidation.action(res)
 
         const errors = validationResult(req)
         if (!errors.isEmpty())
