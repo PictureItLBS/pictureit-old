@@ -14,6 +14,6 @@ siteEntrypoint.get('/register', (req, res) => res.render('pages/auth/register.nj
 siteEntrypoint.use('/app', appEntrypoint)
 
 // Hello World Testing! =D
-siteEntrypoint.get('/helloworld', (req, res) => res.render('pages/helloworld.njk'))
+siteEntrypoint.get('/helloworld', (req, res) => res.render('pages/errors/tokenError.njk'))
 
 export default siteEntrypoint

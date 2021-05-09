@@ -9,8 +9,8 @@ const postEntrypoint = Router()
 postEntrypoint.get('/view/:id', async (req, res) => {
     // Try to verify the token, if the decodedToken is null/empty, it is not verified.
     const decodedToken = verifyToken(req.cookies.apiToken)
-    if (!decodedToken)
-        return res.status(401).render('pages/errors/tokenExpired.njk')
+    if (decodedToken.invalid)
+        return decodedToken.action()
 
     const post = await Post.findOne({ _id: req.params.id })
     if (!post)

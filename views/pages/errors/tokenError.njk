@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="se">
+<head>
+    {% include "../../templates/defaultHeadTags.njk" %}
+    <style>
+        body {
+            padding: 10vh 10vw;
+        }
+    </style>
+    <title>Token Error</title>
+</head>
+<body>
+    <h1>
+        Å nej!
+    </h1>
+    <p>
+        Du har stött på ett <i>token error</i>. Det beror på att {{ reason }}.
+    </p>
+    <p>
+        Du kan testa att <a href="/login">logga in</a> igen, om det inte hjälper så kan du be din lärare eller IT-administratör om hjälp.
+    </p>
+</body>
+</html>

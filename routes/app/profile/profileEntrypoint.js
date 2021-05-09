@@ -9,8 +9,8 @@ profileEntrypoint.get('/', (req, res) => res.render('pages/app/myProfile.njk'))
 profileEntrypoint.get('/mydata', async (req, res) => {
     // Try to verify the token, if the decodedToken is null/empty, it is not verified.
     const decodedToken = verifyToken(req.cookies.apiToken)
-    if (!decodedToken)
-        return res.status(401).render('pages/errors/tokenExpired.njk')
+    if (decodedToken.invalid)
+        return decodedToken.action()
 
     // Fetch the user from the database
     const userInDatabase = await User.findOne({ _id: decodedToken._id })

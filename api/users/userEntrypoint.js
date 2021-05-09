@@ -12,8 +12,8 @@ const userApi = Router()
 // ---
 userApi.get('/profilePicture/get/:name', async (req, res) => {
     const decodedToken = verifyToken(req.cookies.apiToken)
-    if (!decodedToken)
-        return res.status(401).render('pages/errors/tokenExpired.njk')
+    if (decodedToken.invalid)
+        return decodedToken.action()
 
     const user = await User.findOne({ name: req.params.name })
     if (!user)
@@ -33,8 +33,8 @@ userApi.post(
     fileUpload.single('image'),
     async (req, res) => {
         const decodedToken = verifyToken(req.cookies.apiToken)
-        if (!decodedToken)
-            return res.status(401).render('pages/errors/tokenExpired.njk')
+        if (decodedToken.invalid)
+            return decodedToken.action()
 
         if (!req.file)
             return res.status(400).render(
