@@ -52,6 +52,45 @@ postApi.post(
     }
 )
 
+postApi.get('/rawimage/render/:id', async (req, res) => {
+    const decodedToken = verifyToken(req.cookies.apiToken)
+    if (decodedToken.invalid)
+        return decodedToken.action(res)
+
+    const post = await Post.findOne({ _id: req.params.id })
+    if (!post)
+        return res.status(400).json({
+            success: false,
+            error: "Image doesn't exist."
+        })
+
+    const buffer = post.image.data
+    const imageURL = `data:${post.image.contentType};base64,${buffer.toString('base64')}`
+
+    res.render('pages/app/viewImage.njk', { imageDataUrl: imageURL })
+})
+
+postApi.get('/rawimage/string/:id', async (req, res) => {
+    const decodedToken = verifyToken(req.cookies.apiToken)
+    if (decodedToken.invalid)
+        return decodedToken.action(res)
+
+    const post = await Post.findOne({ _id: req.params.id })
+    if (!post)
+        return res.status(400).json({
+            success: false,
+            error: "Image doesn't exist."
+        })
+
+    const buffer = post.image.data
+    const imageURL = `data:${post.image.contentType};base64,${buffer.toString('base64')}`
+
+    res.json({
+        success: true,
+        image: imageURL
+    })
+})
+
 postApi.post('/like/:id',  async (req, res) => {
     const decodedToken = verifyToken(req.cookies.apiToken)
     if (decodedToken.invalid)
@@ -130,45 +169,6 @@ postApi.delete('/unlike/:id',  async (req, res) => {
 
     res.json({
         success: true
-    })
-})
-
-postApi.get('/rawimage/render/:id', async (req, res) => {
-    const decodedToken = verifyToken(req.cookies.apiToken)
-    if (decodedToken.invalid)
-        return decodedToken.action(res)
-
-    const post = await Post.findOne({ _id: req.params.id })
-    if (!post)
-        return res.status(400).json({
-            success: false,
-            error: "Image doesn't exist."
-        })
-
-    const buffer = post.image.data
-    const imageURL = `data:${post.image.contentType};base64,${buffer.toString('base64')}`
-
-    res.render('pages/app/viewImage.njk', { imageDataUrl: imageURL })
-})
-
-postApi.get('/rawimage/string/:id', async (req, res) => {
-    const decodedToken = verifyToken(req.cookies.apiToken)
-    if (decodedToken.invalid)
-        return decodedToken.action(res)
-
-    const post = await Post.findOne({ _id: req.params.id })
-    if (!post)
-        return res.status(400).json({
-            success: false,
-            error: "Image doesn't exist."
-        })
-
-    const buffer = post.image.data
-    const imageURL = `data:${post.image.contentType};base64,${buffer.toString('base64')}`
-
-    res.json({
-        success: true,
-        image: imageURL
     })
 })
 
