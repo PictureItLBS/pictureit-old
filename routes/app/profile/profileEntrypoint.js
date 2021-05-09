@@ -8,13 +8,13 @@ const profileEntrypoint = Router()
 profileEntrypoint.get('/', (req, res) => res.render('pages/app/myProfile.njk'))
 profileEntrypoint.get('/mydata', async (req, res) => {
     // Try to verify the token, if the decodedToken is null/empty, it is not verified.
-    const decodedToken = verifyToken(req.cookies.apiToken)
+    const decodedToken = verifyToken(req.cookies.apiToken, 0)
     if (decodedToken.invalid)
-        return decodedToken.action()
+        return decodedToken.action(res)
 
     // Fetch the user from the database
     const userInDatabase = await User.findOne({ _id: decodedToken._id })
-    const profilePictureUrl = `data:${userInDatabase.profilePicture.contentType};base64,${userInDatabase.profilePicture.data.toString('base64')}`
+    const profilePictureUrl = userInDatabase.profilePicture.data ? `data:${userInDatabase.profilePicture.contentType};base64,${userInDatabase.profilePicture.data.toString('base64')}` : '/assets/resources/logo.png'
 
     res.render(
         'pages/app/accountZone/myData.njk',

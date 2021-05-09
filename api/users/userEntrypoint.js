@@ -13,7 +13,7 @@ const userApi = Router()
 userApi.get('/profilePicture/get/:name', async (req, res) => {
     const decodedToken = verifyToken(req.cookies.apiToken)
     if (decodedToken.invalid)
-        return decodedToken.action()
+        return decodedToken.action(res)
 
     const user = await User.findOne({ name: req.params.name })
     if (!user)
@@ -34,7 +34,7 @@ userApi.post(
     async (req, res) => {
         const decodedToken = verifyToken(req.cookies.apiToken)
         if (decodedToken.invalid)
-            return decodedToken.action()
+            return decodedToken.action(res)
 
         if (!req.file)
             return res.status(400).render(

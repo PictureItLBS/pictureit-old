@@ -16,7 +16,7 @@ postApi.post(
     async (req, res) => {
         const decodedToken = verifyToken(req.cookies.apiToken)
         if (decodedToken.invalid)
-            return decodedToken.action()
+            return decodedToken.action(res)
 
         if (!req.file)
             return res.status(400).render(
@@ -74,7 +74,7 @@ postApi.post(
 postApi.post('/like/:id',  async (req, res) => {
     const decodedToken = verifyToken(req.cookies.apiToken)
     if (decodedToken.invalid)
-        return decodedToken.action()
+        return decodedToken.action(res)
 
     const post = await Post.findOne({ _id: req.params.id })
     if (!post)
@@ -115,7 +115,7 @@ postApi.post('/like/:id',  async (req, res) => {
 postApi.delete('/unlike/:id',  async (req, res) => {
     const decodedToken = verifyToken(req.cookies.apiToken)
     if (decodedToken.invalid)
-        return decodedToken.action()
+        return decodedToken.action(res)
 
     const post = await Post.findOne({ _id: req.params.id })
     if (!post)
@@ -155,7 +155,7 @@ postApi.delete('/unlike/:id',  async (req, res) => {
 postApi.get('/rawimage/render/:id', async (req, res) => {
     const decodedToken = verifyToken(req.cookies.apiToken)
     if (decodedToken.invalid)
-        return decodedToken.action()
+        return decodedToken.action(res)
 
     const post = await Post.findOne({ _id: req.params.id })
     if (!post)
@@ -173,7 +173,7 @@ postApi.get('/rawimage/render/:id', async (req, res) => {
 postApi.get('/rawimage/string/:id', async (req, res) => {
     const decodedToken = verifyToken(req.cookies.apiToken)
     if (decodedToken.invalid)
-        return decodedToken.action()
+        return decodedToken.action(res)
 
     const post = await Post.findOne({ _id: req.params.id })
     if (!post)
