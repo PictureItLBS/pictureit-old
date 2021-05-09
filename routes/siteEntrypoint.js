@@ -17,7 +17,4 @@ siteEntrypoint.use('/app', appEntrypoint)
 // Help pages and so on... (Will slowly be implemented I guess...)
 siteEntrypoint.use('/docs', docsEntrypoint)
 
-// Hello World Testing! =D
-siteEntrypoint.get('/helloworld', (req, res) => res.render('pages/errors/tokenError.njk'))
-
 export default siteEntrypoint
