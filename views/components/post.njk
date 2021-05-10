@@ -5,7 +5,9 @@
         </div>
 
         <div class="post-content-container">
-            <h1 class="post-publisher">{{ publisher }}</h1>
+            <h1 class="post-publisher">
+                <div class="post-pfp" id="{{ publisher }}"></div>{{ publisher }}
+            </h1>
             <p class="post-caption">{{ caption }}</p>
             <div class="post-actions">
                 <span class="icon action action-like {{ "active" if isLiked }}" icon="like" id="{{ postID }}"></span>
