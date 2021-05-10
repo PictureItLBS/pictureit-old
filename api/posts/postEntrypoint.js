@@ -48,6 +48,10 @@ postApi.post(
 
         const savedPost = await post.save()
 
+        const user = await User.findOne({ _id: decodedToken._id })
+        user.posts.push(savedPost._id)
+        await user.updateOne({ posts: user.posts })
+
         res.redirect('/app/post/view/' + savedPost._id)
     }
 )
@@ -79,8 +83,12 @@ postApi.delete('/delete/:id', async (req, res) => {
     })
 
     // Remove likes from the publisher's total-likes-counter.
-    const user = await User.findOne({ _id: decodedToken._id })
+    const user = await User.findOne({ _id: post.publisher })
     await user.updateOne({ likes: user.likes - post.likedBy?.length })
+
+    // Remove the post from the user's profile
+    user.posts.splice(user.posts.indexOf(post._id), 1)
+    await user.updateOne({ posts: user.posts })
 
     await Post.deleteOne({ _id: post._id })
 

@@ -13,11 +13,6 @@
     --link: #6381ED;
 }
 
-body {
-    color: var(--text);
-    background-color: var(--surface);
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -26,6 +21,13 @@ body {
     font-family: 'Lexend Regular';
 
     transition: border .3s, border-radius .3s;
+}
+
+body, html {
+    color: var(--text);
+    background-color: var(--surface);
+
+    width: 100%;
 }
 
 /*

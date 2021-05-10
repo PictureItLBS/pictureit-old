@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import verifyToken from '../../../libs/verifyToken.js'
+import Post from '../../../models/Post.js'
 import User from '../../../models/User.js'
 
 
@@ -13,11 +14,27 @@ profileEntrypoint.get('/', async (req, res) => {
 
     const user = await User.findOne({ _id: decodedToken._id })
 
+    const posts = []
+    for (const postID in user.posts) {
+        const post = await Post.findOne({ _id: user.posts[postID] })
+        posts.push({
+            _id: post._id,
+            publisher: user.name,
+            caption: post.caption,
+            isLiked: user.likedPosts.includes(post._id),
+            likesAmount: post.likedBy.length,
+            date: `${post?.date?.toLocaleTimeString('sv-SE').split(':')[0]}:${post?.date?.toLocaleTimeString('sv-SE').split(':')[1]} - ${post?.date?.toLocaleDateString('sv-SE').split('-').reverse().join('/')}`
+        })
+    }
+    posts.reverse()
+
     res.render(
         'pages/app/user.njk', 
         { 
             user,
-            myProfile: true
+            posts,
+            teacherView: decodedToken.permissionLevel >= 2,
+            unverified: user.permissionLevel == 0
         }
     )
 })
@@ -57,10 +74,17 @@ profileEntrypoint.get('/user/:name', async (req, res) => {
     if (!user)
         return res.status(404).send('Error 404: användaren hittades inte.')
 
+    const posts = []
+    for (const postID in user.posts) {
+        const post = await Post.findOne({ _id: user.posts[postID] })
+        posts.push(post)
+    }
+
     res.render(
         'pages/app/user.njk', 
         { 
             user,
+            posts,
             teacherView: decodedToken.permissionLevel >= 2,
             unverified: user.permissionLevel == 0
         }
@@ -77,10 +101,17 @@ profileEntrypoint.get('/id/:id', async (req, res) => {
     if (!user)
         return res.status(404).send('Error 404: användaren hittades inte.')
 
+    const posts = []
+    for (const postID in user.posts) {
+        const post = await Post.findOne({ _id: user.posts[postID] })
+        posts.push(post)
+    }
+
     res.render(
         'pages/app/user.njk', 
         { 
             user,
+            posts,
             teacherView: decodedToken.permissionLevel >= 2,
             unverified: user.permissionLevel == 0
         }

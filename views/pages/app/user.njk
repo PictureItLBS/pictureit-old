@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     {% include "../../templates/defaultHeadTags.njk" %}
+    <link rel="stylesheet" href="/assets/css/post.css">
     <link rel="stylesheet" href="/assets/css/profile.css">
-    <title>{{ user.name }}</title>
+    <title>{{ user.name }} - PictureIt</title>
 </head>
-<body class="view-single-post">
+<body>
     {# {% include "../../components/sidebar.njk" %} #}
     <main>
         <div class="user-info">
@@ -40,9 +41,10 @@
             </div>
         </div>
 
+        {% import "../../components/post.njk" as postMacro with context %}
         <div class="posts-container">
             {% for post in posts %}
-                
+                {{ postMacro.post(post._id, post.publisher, post.caption, post.isLiked, post.likesAmount, post.date) }}
             {% endfor %}
         </div>
     </main>

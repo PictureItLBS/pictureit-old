@@ -19,4 +19,4 @@ fetch(`/api/users/profilePicture/get/string/${pfp.id}`).then(
 /*
     User Actions (Buttons)
 */
-document.querySelector('.action-mydata').addEventListener('click', ev => window.location.pathname = '/app/profile/mydata')
+document.querySelector('.action-mydata')?.addEventListener('click', ev => window.location.pathname = '/app/profile/mydata')

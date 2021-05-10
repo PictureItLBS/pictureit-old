@@ -63,3 +63,9 @@ h1.username {
 .user-actions {
     grid-area: actions;
 }
+
+.post {
+    margin: 5rem 0;
+    width: 50vw;
+    height: 20vw;
+}

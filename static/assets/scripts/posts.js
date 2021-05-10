@@ -1,4 +1,30 @@
 export default function initPosts() {
+    // Load images
+    const observerConfig = {
+        rootMargin: '0px 0px 50px 0px',
+        threshold: 0
+    }
+
+    const observer = new IntersectionObserver((entries, self) => {
+        entries.forEach(async entry => {
+            if (entry.isIntersecting) {
+                const target = entry.target
+                const imageReq = await fetch(`/api/posts/rawimage/string/${target.id}`)
+                const imageDataSrc = await imageReq.json()
+
+                if (!imageDataSrc.success)
+                    return console.log(imageDataSrc.error)
+
+                target.style.backgroundImage = `url(${imageDataSrc.image})`
+
+                self.unobserve(target)
+            }
+        },
+        observerConfig)
+    })
+
+    document.querySelectorAll('.post-image')?.forEach(image => observer.observe(image))
+
     // Like buttons
     document.querySelectorAll('.action-like').forEach(element => {
         element.addEventListener('click', async ev => {

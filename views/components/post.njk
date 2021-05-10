@@ -1,19 +1,21 @@
-<div class="post">
-    <div class="post-image-container">
-        <div class="post-image" style="background-image: url({{ image }})"></div>
-    </div>
+{% macro post(postID, publisher, caption, isLiked, likesAmount, publishDate) %}
+    <div class="post">
+        <div class="post-image-container">
+            <div class="post-image" id="{{ postID }}"></div>
+        </div>
 
-    <div class="post-content-container">
-        <h1 class="post-publisher">{{ publisher }}</h1>
-        <p class="post-caption">{{ caption }}</p>
-        <div class="post-actions">
-            <span class="icon action action-like {{ isLiked }}" icon="like" id="{{ postID }}"></span>
-            <span class="icon action action-share" icon="share" id="{{ postID }}"></span>
-            <span class="action action-delete" id="{{ postID }}">Delete</span>
-        </div>
-        <div class="post-info">
-            <p class="post-info-likes-amount"><span class="like-amount" postID="{{ postID }}">{{ likesAmount }}</span> gillningar</p>
-            <p class="post-info-date">{{ publishDate }}</p>
+        <div class="post-content-container">
+            <h1 class="post-publisher">{{ publisher }}</h1>
+            <p class="post-caption">{{ caption }}</p>
+            <div class="post-actions">
+                <span class="icon action action-like {{ "active" if isLiked }}" icon="like" id="{{ postID }}"></span>
+                <span class="icon action action-share" icon="share" id="{{ postID }}"></span>
+                <span class="action action-delete" id="{{ postID }}">Delete</span>
+            </div>
+            <div class="post-info">
+                <p class="post-info-likes-amount"><span class="like-amount" postID="{{ postID }}">{{ likesAmount }}</span> gillningar</p>
+                <p class="post-info-date">{{ publishDate }}</p>
+            </div>
         </div>
     </div>
-</div>
+{% endmacro %}
