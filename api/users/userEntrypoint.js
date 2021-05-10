@@ -9,7 +9,7 @@ const userApi = Router()
 // ---
 // Profile Pictures
 // ---
-userApi.get('/profilePicture/get/:name', async (req, res) => {
+userApi.get('/profilePicture/get/string/:name', async (req, res) => {
     const decodedToken = verifyToken(req.cookies.apiToken)
     if (decodedToken.invalid)
         return decodedToken.action(res)
@@ -22,10 +22,33 @@ userApi.get('/profilePicture/get/:name', async (req, res) => {
         })
 
     const buffer = user.profilePicture.data
-    const imageURL = `data:${user.profilePicture.contentType};base64,${buffer.toString('base64')}`
+    const imageURL = buffer ? `data:${user.profilePicture.contentType};base64,${buffer.toString('base64')}` : '/assets/resources/logo.png'
+
+    res.json({
+        success: true,
+        imageURL
+    })
+})
+
+userApi.get('/profilePicture/get/render/:name', async (req, res) => {
+    const decodedToken = verifyToken(req.cookies.apiToken)
+    if (decodedToken.invalid)
+        return decodedToken.action(res)
+
+    const user = await User.findOne({ name: req.params.name })
+    if (!user)
+        return res.status(400).json({
+            success: false,
+            error: "User doesn't exist."
+        })
+
+    const buffer = user.profilePicture.data
+    const imageURL = buffer ? `data:${user.profilePicture.contentType};base64,${buffer.toString('base64')}` : '/assets/resources/logo.png'
+
 
     res.render('pages/app/viewImage.njk', { imageDataUrl: imageURL })
 })
+
 
 userApi.post(
     '/profilePicture/new',

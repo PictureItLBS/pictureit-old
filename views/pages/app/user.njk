@@ -1,1 +1,52 @@
-{{ username }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "../../templates/defaultHeadTags.njk" %}
+    <link rel="stylesheet" href="/assets/css/profile.css">
+    <title>{{ user.name }}</title>
+</head>
+<body class="view-single-post">
+    {# {% include "../../components/sidebar.njk" %} #}
+    <main>
+        <div class="user-info">
+            <div class="user-pfp" id="{{ user.name }}"></div>
+            <h1 class="username">{{ user.name }}</h1>
+            <div class="user-stats">
+                <div class="user-stat user-stat-followers">
+                    <span class="icon" icon="profile"></span>
+                    <p>{{ user.followers.length }} följare</p>
+                </div>
+
+                <div class="user-stat user-stat-following">
+                    <span class="icon" icon="profile"></span>
+                    <p>{{ user.following.length }} följer</p>
+                </div>
+
+                <div class="user-stat user-stat-likes">
+                    <span class="icon" icon="like"></span>
+                    <p>{{ user.likes }} gillningar</p>
+                </div>
+            </div>
+            <div class="user-actions">
+                {% if myProfile %}
+                    <button class="action-mydata">Profilinställningar</button>
+                {% else %}
+                    <button class="action-follow" id="{{ user._id }}">Följ</button>
+                {% endif %}
+
+                {% if teacherView and unverified %}
+                    <button class="action-follow" id="{{ user._id }}">Bekräfta</button>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="posts-container">
+            {% for post in posts %}
+                
+            {% endfor %}
+        </div>
+    </main>
+
+    <script src="/assets/scripts/profile.js" type="module"></script>
+</body>
+</html>
