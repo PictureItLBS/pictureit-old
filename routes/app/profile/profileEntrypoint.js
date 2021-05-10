@@ -65,6 +65,8 @@ profileEntrypoint.get('/mydata', async (req, res) => {
     )
 })
 
+profileEntrypoint.get('/mydata/deleteAccount', (req, res) => res.render('pages/auth/delete.njk'))
+
 profileEntrypoint.get('/user/:name', async (req, res) => {
     // Try to verify the token, if the decodedToken is null/empty, it is not verified.
     const decodedToken = verifyToken(req.cookies.apiToken)

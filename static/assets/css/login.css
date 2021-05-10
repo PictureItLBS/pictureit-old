@@ -49,3 +49,18 @@ input[type="submit"] {
     font-size: 1.8rem;
     margin-left: 2rem;
 }
+
+.warning {
+    color: var(--destructive);
+}
+
+input.warning {
+    color: var(--text);
+    background-color: var(--destructive);
+    border-color: var(--destructive);
+}
+
+.last-warning {
+    margin-top: 2rem;
+    margin-bottom: 0;
+}
