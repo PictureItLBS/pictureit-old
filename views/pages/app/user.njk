@@ -15,7 +15,7 @@
             <div class="user-stats">
                 <div class="user-stat user-stat-followers">
                     <span class="icon" icon="profile"></span>
-                    <p>{{ user.followers.length }} följare</p>
+                    <p><span class="followers-amount" postID="{{ user._id }}">{{ user.followers.length }}</span> följare</p>
                 </div>
 
                 <div class="user-stat user-stat-following">
@@ -30,13 +30,13 @@
             </div>
             <div class="user-actions">
                 {% if myProfile %}
-                    <button class="action-mydata">Profilinställningar</button>
+                    <button class="action action-mydata">Profilinställningar</button>
                 {% else %}
-                    <button class="action-follow" id="{{ user._id }}">Följ</button>
+                    <button class="action action-follow {{ "active" if following }}" id="{{ user._id }}">{{ "Avfölj" if following else "Följ" }}</button>
                 {% endif %}
 
                 {% if teacherView and unverified %}
-                    <button class="action-validate" id="{{ user._id }}">Bekräfta</button>
+                    <button class="action action-validate" id="{{ user._id }}">Bekräfta</button>
                 {% endif %}
             </div>
         </div>
