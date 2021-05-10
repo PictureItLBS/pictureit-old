@@ -75,17 +75,28 @@ profileEntrypoint.get('/user/:name', async (req, res) => {
     if (!user)
         return res.status(404).send('Error 404: användaren hittades inte.')
 
+    const visitor = await User.findOne({ _id: decodedToken._id })
+
     const posts = []
     for (const postID in user.posts) {
         const post = await Post.findOne({ _id: user.posts[postID] })
-        posts.push(post)
+        posts.push({
+            _id: post._id,
+            publisher: user.name,
+            caption: post.caption,
+            isLiked: visitor.likedPosts.includes(post._id),
+            likesAmount: post.likedBy.length,
+            date: `${post?.date?.toLocaleTimeString('sv-SE').split(':')[0]}:${post?.date?.toLocaleTimeString('sv-SE').split(':')[1]} - ${post?.date?.toLocaleDateString('sv-SE').split('-').reverse().join('/')}`
+        })
     }
+    posts.reverse()
 
     res.render(
         'pages/app/user.njk', 
         { 
             user,
             posts,
+            myProfile: false,
             teacherView: decodedToken.permissionLevel >= 2,
             unverified: user.permissionLevel == 0
         }
@@ -102,17 +113,28 @@ profileEntrypoint.get('/id/:id', async (req, res) => {
     if (!user)
         return res.status(404).send('Error 404: användaren hittades inte.')
 
+    const visitor = await User.findOne({ _id: decodedToken._id })
+
     const posts = []
     for (const postID in user.posts) {
         const post = await Post.findOne({ _id: user.posts[postID] })
-        posts.push(post)
+        posts.push({
+            _id: post._id,
+            publisher: user.name,
+            caption: post.caption,
+            isLiked: visitor.likedPosts.includes(post._id),
+            likesAmount: post.likedBy.length,
+            date: `${post?.date?.toLocaleTimeString('sv-SE').split(':')[0]}:${post?.date?.toLocaleTimeString('sv-SE').split(':')[1]} - ${post?.date?.toLocaleDateString('sv-SE').split('-').reverse().join('/')}`
+        })
     }
+    posts.reverse()
 
     res.render(
         'pages/app/user.njk', 
         { 
             user,
             posts,
+            myProfile: false,
             teacherView: decodedToken.permissionLevel >= 2,
             unverified: user.permissionLevel == 0
         }

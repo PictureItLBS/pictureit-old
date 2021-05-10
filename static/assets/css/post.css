@@ -17,6 +17,7 @@ body.view-single-post .post {
     grid-template-columns: 50fr 45fr;
 
     background-color: var(--standout);
+    box-shadow: 0 16px 32px var(--darker);
     border-radius: 1rem 1rem 4rem 1rem;
 }
 
