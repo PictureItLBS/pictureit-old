@@ -6,6 +6,7 @@
     <title>Post av {{ publisher }}</title>
 </head>
 <body class="view-single-post">
-    {% include "../../components/post.njk" %}
+    {% import "../../components/post.njk" as postMacro with context %}
+    {{ postMacro.post(postID, publisher, caption, isLiked, likesAmount, publishDate) }}
 </body>
 </html>
