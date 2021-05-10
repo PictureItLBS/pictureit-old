@@ -10,11 +10,17 @@
 
 .profile-picture {
     grid-area: pfp;
+    
+    background-image: url(/assets/resources/logo.png);
+    background-size: cover;
+    background-position: center;
+    
+    margin: 0 5vmin 0 10vw;
+    border-radius: 100%;
+    box-shadow: 0 16px 32px var(--darker);
 
     width: 25vw;
-    height: auto;
-
-    margin: 0 5vmin 0 10vw;
+    height: 25vw;
 }
 
 .info-container {

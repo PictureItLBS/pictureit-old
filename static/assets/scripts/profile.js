@@ -1,5 +1,8 @@
-const pfp = document.querySelector('.user-pfp')
+/*
+    Profile Pictures
+*/
 
+const pfp = document.querySelector('.user-pfp')
 fetch(`/api/users/profilePicture/get/string/${pfp.id}`).then(
     result => result.json()
 ).then(answer => {
@@ -10,3 +13,10 @@ fetch(`/api/users/profilePicture/get/string/${pfp.id}`).then(
 
     pfp.style.backgroundImage = `url(${answer.imageURL})`
 })
+
+
+
+/*
+    User Actions (Buttons)
+*/
+document.querySelector('.action-mydata').addEventListener('click', ev => window.location.pathname = '/app/profile/mydata')
