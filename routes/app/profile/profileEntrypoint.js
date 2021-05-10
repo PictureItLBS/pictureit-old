@@ -33,6 +33,7 @@ profileEntrypoint.get('/', async (req, res) => {
         { 
             user,
             posts,
+            myProfile: true,
             teacherView: decodedToken.permissionLevel >= 2,
             unverified: user.permissionLevel == 0
         }
