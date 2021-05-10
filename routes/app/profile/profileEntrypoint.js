@@ -102,7 +102,9 @@ profileEntrypoint.get('/user/:name', async (req, res) => {
             myProfile: false,
             following: visitor.following.includes(user._id),
             teacherView: decodedToken.permissionLevel >= 2,
-            unverified: user.permissionLevel == 0
+            adminView: decodedToken.permissionLevel >= 3,
+            unverified: user.permissionLevel == 0,
+            notTeacher: user.permissionLevel < 2
         }
     )
 })
@@ -141,7 +143,9 @@ profileEntrypoint.get('/id/:id', async (req, res) => {
             myProfile: false,
             following: visitor.following.includes(user._id),
             teacherView: decodedToken.permissionLevel >= 2,
-            unverified: user.permissionLevel == 0
+            adminView: decodedToken.permissionLevel >= 3,
+            unverified: user.permissionLevel == 0,
+            notTeacher: user.permissionLevel < 2
         }
     )
 })

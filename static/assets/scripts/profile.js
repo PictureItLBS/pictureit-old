@@ -64,3 +64,35 @@ document.querySelectorAll('.action-follow').forEach(element => {
         }
     })
 })
+
+const validateButton = document.querySelector('.action-validate')
+validateButton?.addEventListener('click', async ev => {
+    const validateReq = await fetch(
+        `/api/users/validate/${validateButton.id}`,
+        {
+            method: 'POST'
+        }
+    )
+    const status = await validateReq.json()
+
+    if (!status.success)
+        return console.log(status.error)
+
+    window.location.reload()
+})
+
+const promoteButton = document.querySelector('.action-promote')
+promoteButton?.addEventListener('click', async ev => {
+    const promoteReq = await fetch(
+        `/api/users/promote/${promoteButton.id}`,
+        {
+            method: 'POST'
+        }
+    )
+    const status = await promoteReq.json()
+
+    if (!status.success)
+        return console.log(status.error)
+
+    window.location.reload()
+})

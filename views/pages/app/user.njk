@@ -38,6 +38,10 @@
                 {% if teacherView and unverified %}
                     <button class="action action-validate" id="{{ user._id }}">Bekräfta</button>
                 {% endif %}
+
+                {% if adminView and notTeacher %}
+                    <button class="action action-promote" id="{{ user._id }}">Gör Till Lärare</button>
+                {% endif %}
             </div>
         </div>
 

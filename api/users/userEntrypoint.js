@@ -71,4 +71,48 @@ userApi.delete('/unfollow/:id', async (req, res) => {
     })
 })
 
+userApi.post('/validate/:id', async (req, res) => {
+    const decodedToken = verifyToken(req.cookies.apiToken, 2)
+    if (decodedToken.invalid)
+        return decodedToken.action(res)
+
+    const user = await User.findOne({ _id: req.params.id })
+    if (!user)
+        return res.status(400).json({
+            success: false,
+            error: "User doesn't exist."
+        })
+
+    await user.updateOne({ permissionLevel: 1 })
+
+    res.json({
+        success: true
+    })
+})
+
+userApi.post('/promote/:id', async (req, res) => {
+    const decodedToken = verifyToken(req.cookies.apiToken, 3)
+    if (decodedToken.invalid)
+        return decodedToken.action(res)
+
+    const user = await User.findOne({ _id: req.params.id })
+    if (!user)
+        return res.status(400).json({
+            success: false,
+            error: "User doesn't exist."
+        })
+
+    if (user.permissionLevel >= 2)
+        return res.status(400).json({
+            success: false,
+            error: "User is already teacher or higher."
+        })
+
+    await user.updateOne({ permissionLevel: 2 })
+
+    res.json({
+        success: true
+    })
+})
+
 export default userApi
