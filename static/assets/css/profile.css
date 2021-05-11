@@ -53,6 +53,10 @@ h1.username {
 .user-stat {
     display: flex;
     margin-right: 3rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .user-stat p {

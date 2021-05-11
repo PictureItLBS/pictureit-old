@@ -43,6 +43,7 @@ body.view-single-post .post {
     display: flex;
     align-items: center;
     margin-bottom: 2rem;
+    font-size: 2.4rem;
 }
 
 .post-pfp {
@@ -54,8 +55,8 @@ body.view-single-post .post {
     border-radius: 100%;
     box-shadow: 0 4px 16px var(--surface);
 
-    width: 5rem;
-    height: 5rem;
+    width: 4.5rem;
+    height: 4.5rem;
 }
 
 .post-image {
@@ -77,6 +78,10 @@ body.view-single-post .post {
 .post-info {
     display: flex;
     justify-content: space-between;
+}
+
+.post-info-date {
+    font-family: 'Lexend Thin';
 }
 
 .icon.action {
