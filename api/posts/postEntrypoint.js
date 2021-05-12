@@ -76,15 +76,15 @@ postApi.delete('/delete/:id', async (req, res) => {
         })
 
     // Remove this post from all liked-collections for all users. (How to explain in words?)
-    post.likedBy?.forEach(async userID => {
-        const user = await User.findOne({ _id: userID })
+    for (const userID in post.likedBy) {
+        const user = await User.findOne({ _id: user.likedBy[userID] })
         user.likedPosts.splice(user.likedPosts.indexOf(post._id), 1)
         await user.updateOne({ likedPosts: user.likedPosts })
-    })
+    }
 
     // Remove likes from the publisher's total-likes-counter.
-    const user = await User.findOne({ _id: post.publisher })
-    await user.updateOne({ likes: user.likes - post.likedBy?.length })
+    const publisher = await User.findOne({ _id: post.publisher })
+    await publisher.updateOne({ likes: publisher.likes - post.likedBy?.length })
 
     // Remove the post from the user's profile
     user.posts.splice(user.posts.indexOf(post._id), 1)
@@ -162,7 +162,7 @@ postApi.post('/like/:id',  async (req, res) => {
     post.likedBy.push(decodedToken._id)
     await post.updateOne({ likedBy: post.likedBy })
 
-    // Increment pblisher's total like count.
+    // Increment publisher's total like count.
     const publisher = await User.findOne({ _id: post.publisher })
     await publisher.updateOne({ likes: publisher.likes + 1 })
 
@@ -203,7 +203,7 @@ postApi.delete('/unlike/:id',  async (req, res) => {
     post.likedBy.splice(post.likedBy.indexOf(decodedToken._id), 1)
     await post.updateOne({ likedBy: post.likedBy })
 
-    // Decrease pblisher's total like count.
+    // Decrease publisher's total like count.
     const publisher = await User.findOne({ _id: post.publisher })
     await publisher.updateOne({ likes: publisher.likes - 1 })
 
