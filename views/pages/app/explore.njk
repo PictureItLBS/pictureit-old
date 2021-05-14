@@ -2,12 +2,19 @@
 <html>
 <head>
     {% include "../../templates/defaultHeadTags.njk" %}
+    <link rel="stylesheet" type="text/css" href="/assets/css/forms.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/explore.css">
     <title>PictureIt - Explore</title>
 </head>
 
-<body>
+<body id="app">
     {% include "../../components/sidebar.njk" %}
-    <main>
+    <main class="app">
+        <form class="searchbar" method="get" action="#">
+            <span class="icon" icon="explore"></span>
+            <input type="text" name="search-query" id="search-query" placeholder="Sök..." autocomplete="off">
+            <input type="submit" class="search-btn" value="Sök">
+        </form>
         {% import "../../components/post.njk" as postMacro with context %}
         {% for post in posts %}
             {{ postMacro.post(post._id, post.publisher, post.caption, post.isLiked, post.likesAmount, post.date) }}

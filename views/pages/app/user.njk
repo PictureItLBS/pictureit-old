@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="/assets/css/profile.css">
     <title>{{ user.name }} - PictureIt</title>
 </head>
-<body>
-    {# {% include "../../components/sidebar.njk" %} #}
-    <main>
+<body id="app">
+    {% include "../../components/sidebar.njk" %}
+    <main class="app">
         <div class="user-info">
             <div class="user-pfp" id="{{ user.name }}"></div>
             <h1 class="username">{{ user.name }}</h1>

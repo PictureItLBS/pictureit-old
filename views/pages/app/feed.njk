@@ -8,7 +8,7 @@
 
 <body id="app">
     {% include "../../components/sidebar.njk" %}
-    <main>
+    <main class="app">
         {% import "../../components/post.njk" as postMacro with context %}
         {% for post in posts %}
             {{ postMacro.post(post._id, post.publisher, post.caption, post.isLiked, post.likesAmount, post.date) }}

@@ -119,7 +119,7 @@ nav.sidebar {
     font-size: 2.4rem;
 }
 
-main {
+main.app {
     display: flex;
     flex-direction: column;
 
