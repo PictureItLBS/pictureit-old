@@ -104,11 +104,32 @@ span.icon > * {
 
 
 /*
-    SIDEBAR
+    APP
 */
+body#app {
+    display: grid;
+    grid-template-areas: 'nav main';
+    grid-template-columns: auto 1fr;
+}
+
 nav.sidebar {
     display: block;
     color: var(--surface);
     box-shadow: 2px 2px 2px 2px;
     font-size: 2.4rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    width: 100%;
+}
+
+.post {
+    margin: 5rem 0;
+    width: 50vw;
+    height: 20vw;
 }
