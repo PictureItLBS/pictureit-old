@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import mongoose_fuzzy_searching from 'mongoose-fuzzy'
 
 const postSchema = new mongoose.Schema({
     publisher: {
@@ -22,6 +23,10 @@ const postSchema = new mongoose.Schema({
         type: [String],
         default: []
     }
+})
+
+postSchema.plugin(mongoose_fuzzy_searching, {
+    fields: ["caption"]
 })
 
 export default mongoose.model('Post', postSchema)

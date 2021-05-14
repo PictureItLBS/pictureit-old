@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import mongoose_fuzzy_searching from 'mongoose-fuzzy'
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -42,5 +43,10 @@ const userSchema = new mongoose.Schema({
         default: []
     }
 })
+
+userSchema.plugin(mongoose_fuzzy_searching, {
+    fields: ["name"]
+})
+
 
 export default mongoose.model('User', userSchema)

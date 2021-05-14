@@ -4,30 +4,29 @@
     {% include "../../templates/defaultHeadTags.njk" %}
     <link rel="stylesheet" type="text/css" href="/assets/css/forms.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/explore.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/post.css">
     <title>PictureIt - Explore</title>
+    <script src="/assets/scripts/explore.js" type="module" defer></script>
 </head>
 
 <body id="app">
     {% include "../../components/sidebar.njk" %}
     <main class="app">
-        <form class="searchbar" method="get" action="./search">
+        <form class="searchbar" method="get" action="/app/explore/search">
             <span class="icon" icon="explore"></span>
-            <input type="text" name="q" id="search-query" placeholder="Sök..." autocomplete="off">
+            <input type="text" name="q" id="search-query" placeholder="Sök..." autocomplete="off" value="{{ query }}">
             <input type="submit" class="search-btn" value="Sök">
         </form>
 
-        {% if query %}
-            <h1>
-                Sökning efter {{ query }}
-            </h1>
-        {% endif %}
-
         {% if users %}
-            {% for user in users %}
-                <div class="user">
-                    <h1>{{ user.name }}</h1>
-                </div>
-            {% endfor %}
+            <div class="users">
+                {% for user in users %}
+                    <div class="user" id="{{ user.name }}">
+                        <div class="user-pfp" id="{{ user.name }}"></div>
+                        <p class="username">{{ user.name }}</p>
+                    </div>
+                {% endfor %}
+            </div>
         {% endif %}
 
         {% import "../../components/post.njk" as postMacro with context %}
