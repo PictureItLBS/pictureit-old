@@ -12,4 +12,19 @@ exploreEntrypoint.get('/', async (req, res) => {
     res.render('pages/app/explore.njk')
 })
 
+exploreEntrypoint.get('/search', async (req, res) => {
+    const decodedToken = verifyToken(req.cookies.apiToken)
+    if (decodedToken.invalid)
+        return decodedToken.action(res)
+
+    // const users = await User.fuzzy(req.query.q)
+
+    res.render(
+        'pages/app/explore.njk',
+        {
+            query: req.query.q
+        }
+    )
+})
+
 export default exploreEntrypoint

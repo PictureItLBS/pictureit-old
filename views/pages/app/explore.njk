@@ -10,11 +10,26 @@
 <body id="app">
     {% include "../../components/sidebar.njk" %}
     <main class="app">
-        <form class="searchbar" method="get" action="#">
+        <form class="searchbar" method="get" action="./search">
             <span class="icon" icon="explore"></span>
-            <input type="text" name="search-query" id="search-query" placeholder="Sök..." autocomplete="off">
+            <input type="text" name="q" id="search-query" placeholder="Sök..." autocomplete="off">
             <input type="submit" class="search-btn" value="Sök">
         </form>
+
+        {% if query %}
+            <h1>
+                Sökning efter {{ query }}
+            </h1>
+        {% endif %}
+
+        {% if users %}
+            {% for user in users %}
+                <div class="user">
+                    <h1>{{ user.name }}</h1>
+                </div>
+            {% endfor %}
+        {% endif %}
+
         {% import "../../components/post.njk" as postMacro with context %}
         {% for post in posts %}
             {{ postMacro.post(post._id, post.publisher, post.caption, post.isLiked, post.likesAmount, post.date) }}
