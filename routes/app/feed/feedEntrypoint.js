@@ -17,7 +17,7 @@ feedEntrypoint.get('/', async (req, res) => {
         const user = await User.findOne({ _id: me.following[userID] })
 
         // Get the latest post from the user
-        const post = await Post.findOne({ _id: user.posts[user.posts.length-1] })
+        const post = await Post.findOne({ _id: user.posts[user.posts.length - 1] })
 
         postsForFeed.push({
             _id: post._id,
