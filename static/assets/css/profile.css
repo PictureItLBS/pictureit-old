@@ -66,5 +66,5 @@ h1.username {
 .user-actions .action.active {
     color: var(--text);
     border-color: var(--text);
-    opacity: 0.3;
+    opacity: 0.5;
 }
