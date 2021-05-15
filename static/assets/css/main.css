@@ -116,13 +116,17 @@ body#app {
 }
 
 nav.sidebar {
-    display: block;
-    color: var(--surface);
-    box-shadow: 2px 2px 2px 2px;
-    font-size: 2.4rem;
+    grid-area: nav;
+    box-shadow: 8px 0 32px var(--darker);
+
+    height: 100vh;
+
+    position: sticky;
+    top: 0;
 }
 
 main.app {
+    grid-area: main;
     display: flex;
     flex-direction: column;
 

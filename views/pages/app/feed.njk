@@ -14,5 +14,6 @@
             {{ postMacro.post(post._id, post.publisher, post.caption, post.canDelete, post.isLiked, post.likesAmount, post.date) }}
         {% endfor %}
     </main>
+    {% include "../../components/quickies.njk" %}
 </body>
 </html>
