@@ -3,6 +3,7 @@
 <head>
     {% include "../../../templates/defaultHeadTags.njk" %}
     <link rel="stylesheet" type="text/css" href="/assets/css/myData.css">
+    <script src="/assets/scripts/mydata.js" type="module" defer></script>
     <title>Min data</title>
 </head>
 <body class="my-data--grid">
@@ -61,7 +62,7 @@
         </div>
 
         <p class="links">
-            <a href="#" id="download-my-data">Ladda ned min data</a> <br>
+            <a href="/api/auth/downloadData" id="download-my-data" style="color: var(--primary)">Ladda ned min data</a> <br>
             <a href="/app/profile/mydata/deleteAccount" id="delete-account">Ta bort mitt konto</a>
         </p>
 

@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken'
 import User from '../../models/User.js'
 import Post from '../../models/Post.js'
 import verifyToken from '../../libs/verifyToken.js'
+import JSZip from 'jszip'
 
 
 const authApi = Router()
@@ -264,5 +265,50 @@ authApi.post(
         }
     }
 )
+
+authApi.get('/downloadData', async (req, res) => {
+    const decodedToken = verifyToken(req.cookies.apiToken, 0)
+    if (decodedToken.invalid)
+        return decodedToken.action(res)
+
+    const zip = new JSZip()
+    
+    const user = await User.findOne({ _id: decodedToken._id })
+    zip.file(`profilePicture.${user.profilePicture.contentType.split('/')[1]}`, user.profilePicture.data, { base64: true })
+
+    const userJSON = JSON.parse(JSON.stringify(user)) // For some reason doing this is necessary to remove "profilePicture" from the JSON file...
+    delete userJSON.profilePicture
+    zip.file('user.json', JSON.stringify(userJSON, null, 4))
+
+    const posts = []
+    for (const postID in user.posts) {
+        const post = await Post.findOne({ _id: user.posts[postID] })
+        const postHTML = `
+            <img src="data:${post.image.contentType};base64,${post.image.data.toString('base64')}" style="max-width: 100vw; max-height: 80vh">
+            <p>${post.caption}</p>
+            <i>${post?.date?.toLocaleTimeString('sv-SE').split(':')[0]}:${post?.date?.toLocaleTimeString('sv-SE').split(':')[1]} - ${post?.date?.toLocaleDateString('sv-SE').split('-').reverse().join('/')}</i>
+        `
+        posts.push({
+            _id: post._id,
+            postHTML
+        })
+    }
+    
+    const postsDir = zip.folder('posts')
+    for (const postIndex in posts) {
+        const post = posts[postIndex]
+        postsDir.file(`${post._id}.html`, post.postHTML)
+    }
+
+    const zipBase64 = await zip.generateAsync({ type: "base64" })
+    const zipData = Buffer.from(zipBase64, "base64")
+
+    res.header({
+        'Content-Type': 'application/zip',
+        'Content-disposition': 'attachment; filename=userdata.zip'
+    })
+
+    res.send(zipData)
+})
 
 export default authApi

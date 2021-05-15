@@ -6,7 +6,10 @@
     --surface: #222222;
     --standout: #343434;
     --darker: #181818;
+
     --backdrop: #F2F2F219;
+    --darker-backdrop: #18181888;
+
     --primary: #53FB5E;
     --accent: #AC53FB;
     --destructive: #FF4B4B;
@@ -209,4 +212,41 @@ main.app {
 
 .quickie-button:last-child:hover img {
     transform: rotate(180deg);
+}
+
+/*
+    POPUPS
+*/
+.popup-container {
+    display: grid;
+    place-items: center;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    backdrop-filter: blur(8px) opacity(100%);
+    background-color: var(--darker-backdrop);
+}
+
+.popup {
+    background-color: var(--standout);
+    box-shadow: 0 16px 32px var(--darker);
+
+    padding: 4rem 5rem;
+    max-width: 60vw;
+
+    display: grid;
+    grid-template-areas: 'title' 'text' 'actions';
+    border-radius: 1rem 1rem 4rem 1rem;
+}
+
+.popup-action-no {
+    color: var(--text);
+    border-color: var(--text);
+
+    opacity: 0.5;
 }
