@@ -4,6 +4,7 @@
     {% include "../../templates/defaultHeadTags.njk" %}
     <link rel="stylesheet" href="/assets/css/post.css">
     <link rel="stylesheet" href="/assets/css/profile.css">
+    <script src="/assets/scripts/profile.js" type="module" defer></script>
     <title>{{ user.name }} - PictureIt</title>
 </head>
 <body id="app">
@@ -52,7 +53,6 @@
             {% endfor %}
         </div>
     </main>
-
-    <script src="/assets/scripts/profile.js" type="module"></script>
+    {% include "../../components/quickies.njk" %}
 </body>
 </html>

@@ -60,7 +60,7 @@ h1.username {
 }
 
 .user-actions .action {
-    transition: border-color .5s, color .5s, opacity .5s;
+    transition: border-color .5s, color .5s, opacity .5s, border-radius .3s;
 }
 
 .user-actions .action.active {
