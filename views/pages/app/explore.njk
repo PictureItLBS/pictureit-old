@@ -18,8 +18,9 @@
             <input type="submit" class="search-btn" value="Sök">
         </form>
 
-        {% if users %}
+        {% if users[0] %}
             <div class="users">
+                <h1 class="users-title">Användare</h1>
                 {% for user in users %}
                     <div class="user" id="{{ user.name }}">
                         <div class="user-pfp" id="{{ user.name }}"></div>
@@ -29,10 +30,17 @@
             </div>
         {% endif %}
 
-        {% import "../../components/post.njk" as postMacro with context %}
-        {% for post in posts %}
-            {{ postMacro.post(post._id, post.publisher, post.caption, post.isLiked, post.likesAmount, post.date) }}
-        {% endfor %}
+        {% if posts[0] %}
+            {% import "../../components/post.njk" as postMacro with context %}
+            <h1>Inlägg</h1>
+            {% for post in posts %}
+                {{ postMacro.post(post._id, post.publisher, post.caption, post.isLiked, post.likesAmount, post.date) }}
+            {% endfor %}
+        {% else %}
+            <p>
+                Tyvärr hittades inga inlägg. :'(
+            </p>
+        {% endif %}
     </main>
 </body>
 </html>
