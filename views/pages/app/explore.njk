@@ -34,7 +34,7 @@
             {% import "../../components/post.njk" as postMacro with context %}
             <h1>Inlägg</h1>
             {% for post in posts %}
-                {{ postMacro.post(post._id, post.publisher, post.caption, post.isLiked, post.likesAmount, post.date) }}
+                {{ postMacro.post(post._id, post.publisher, post.caption, post.canDelete, post.isLiked, post.likesAmount, post.date) }}
             {% endfor %}
         {% else %}
             <p>

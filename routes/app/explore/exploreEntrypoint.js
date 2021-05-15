@@ -34,6 +34,7 @@ exploreEntrypoint.get('/search', async (req, res) => {
             caption: post.caption,
             isLiked: me.likedPosts.includes(post._id),
             likesAmount: post.likedBy.length,
+            canDelete: post.publisher == me._id || me.permissionLevel >= 2,
             date: `${post?.date?.toLocaleTimeString('sv-SE').split(':')[0]}:${post?.date?.toLocaleTimeString('sv-SE').split(':')[1]} - ${post?.date?.toLocaleDateString('sv-SE').split('-').reverse().join('/')}`
         })
     }

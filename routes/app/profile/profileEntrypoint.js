@@ -23,6 +23,7 @@ profileEntrypoint.get('/', async (req, res) => {
             caption: post.caption,
             isLiked: user.likedPosts.includes(post._id),
             likesAmount: post.likedBy.length,
+            canDelete: true,
             date: `${post?.date?.toLocaleTimeString('sv-SE').split(':')[0]}:${post?.date?.toLocaleTimeString('sv-SE').split(':')[1]} - ${post?.date?.toLocaleDateString('sv-SE').split('-').reverse().join('/')}`
         })
     }
@@ -89,6 +90,7 @@ profileEntrypoint.get('/user/:name', async (req, res) => {
             caption: post.caption,
             isLiked: visitor.likedPosts.includes(post._id),
             likesAmount: post.likedBy.length,
+            canDelete: decodedToken.permissionLevel >= 2,
             date: `${post?.date?.toLocaleTimeString('sv-SE').split(':')[0]}:${post?.date?.toLocaleTimeString('sv-SE').split(':')[1]} - ${post?.date?.toLocaleDateString('sv-SE').split('-').reverse().join('/')}`
         })
     }
@@ -130,6 +132,7 @@ profileEntrypoint.get('/id/:id', async (req, res) => {
             caption: post.caption,
             isLiked: visitor.likedPosts.includes(post._id),
             likesAmount: post.likedBy.length,
+            canDelete: decodedToken.permissionLevel >= 2,
             date: `${post?.date?.toLocaleTimeString('sv-SE').split(':')[0]}:${post?.date?.toLocaleTimeString('sv-SE').split(':')[1]} - ${post?.date?.toLocaleDateString('sv-SE').split('-').reverse().join('/')}`
         })
     }

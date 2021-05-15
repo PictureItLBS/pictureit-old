@@ -11,7 +11,7 @@
     <main class="app">
         {% import "../../components/post.njk" as postMacro with context %}
         {% for post in posts %}
-            {{ postMacro.post(post._id, post.publisher, post.caption, post.isLiked, post.likesAmount, post.date) }}
+            {{ postMacro.post(post._id, post.publisher, post.caption, post.canDelete, post.isLiked, post.likesAmount, post.date) }}
         {% endfor %}
     </main>
 </body>

@@ -1,4 +1,4 @@
-{% macro post(postID, publisher, caption, isLiked, likesAmount, publishDate) %}
+{% macro post(postID, publisher, caption, canDelete, isLiked, likesAmount, publishDate) %}
     <div class="post">
         <div class="post-image-container">
             <div class="post-image" id="{{ postID }}"></div>
@@ -12,7 +12,9 @@
             <div class="post-actions">
                 <span class="icon action action-like {{ "active" if isLiked }}" icon="like" id="{{ postID }}"></span>
                 <span class="icon action action-share" icon="share" id="{{ postID }}"></span>
-                <span class="action action-delete" id="{{ postID }}">Delete</span>
+                {% if canDelete %}
+                    <span class="action action-delete" id="{{ postID }}">Delete</span>
+                {% endif %}
             </div>
             <div class="post-info">
                 <p class="post-info-likes-amount"><span class="like-amount" postID="{{ postID }}">{{ likesAmount }}</span> gillningar</p>
