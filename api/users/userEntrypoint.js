@@ -19,19 +19,19 @@ userApi.post('/follow/:id', async (req, res) => {
             error: "User doesn't exist."
         })
 
-    const user = await User.findOne({ _id: decodedToken._id })
-    if (user.following.includes(target._id))
+    const me = await User.findOne({ _id: decodedToken._id })
+    if (me.following.includes(target._id))
         return res.status(400).json({
             success: false,
             error: "You already follow that user."
         })
 
     // Add target to the user following list.
-    user.following.push(target._id)
-    await user.updateOne({ following: user.following })
+    me.following.push(target._id)
+    await me.updateOne({ following: me.following })
 
     // Add the user to the target followers list
-    target.followers.push(user._id)
+    target.followers.push(me._id)
     await target.updateOne({ followers: target.followers })
 
     res.json({
@@ -51,19 +51,19 @@ userApi.delete('/unfollow/:id', async (req, res) => {
             error: "User doesn't exist."
         })
 
-    const user = await User.findOne({ _id: decodedToken._id })
-    if (!user.following.includes(target._id))
+    const me = await User.findOne({ _id: decodedToken._id })
+    if (!me.following.includes(target._id))
         return res.status(400).json({
             success: false,
             error: "You don't follow that user."
         })
 
     // Remove target to the user following list.
-    user.following.splice(user.following.indexOf(target._id), 1)
-    await user.updateOne({ following: user.following })
+    me.following.splice(me.following.indexOf(target._id), 1)
+    await me.updateOne({ following: me.following })
 
     // Remove the user to the target followers list
-    target.followers.splice(target.followers.indexOf(user._id), 1)
+    target.followers.splice(target.followers.indexOf(me._id), 1)
     await target.updateOne({ followers: target.followers })
 
     res.json({

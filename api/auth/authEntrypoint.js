@@ -193,23 +193,23 @@ authApi.post(
         const match = await bcrypt.compare(password, me.password)
         if (match) {
             // Delete posts and likes.
-            me.posts?.forEach(async postID => {
-                const post = await Post.findOne({ _id: postID })
+            for (const postID in me.posts) {
+                const post = await Post.findOne({ _id: me.posts[postID] })
 
-                post.likedBy?.forEach(async userID => {
+                for (const userID in post.likedBy) {
                     const user = await User.findOne({ _id: userID })
                     user.likedPosts.splice(user.likedPosts.indexOf(post._id), 1)
                     await user.updateOne({ likedPosts: user.likedPosts })
-                })
+                }
 
                 await Post.deleteOne({ _id: post._id })
-            })
+            }
 
             // Delete own likes.
             for (const postID in me.likedPosts) {
                 const post = await Post.findOne({ _id: me.likedPosts[postID] })
 
-                if (!post) return null
+                if (!post) continue
 
                 post.likedBy?.splice(post?.likedBy?.indexOf(me._id), 1)
                 await post?.updateOne({ likedBy: post?.likedBy })
@@ -218,7 +218,25 @@ authApi.post(
                 await publisher.updateOne({ likes: publisher.likes - 1 })
             }
 
-            // Delete following/followers. (NOT IMPLEMENTED)
+            // Make all followers stop following.
+            for (const targetID in me.followers) {
+                const target = await User.findOne({ _id: me.followers[targetID] })
+
+                if (!target) continue
+
+                target.following.splice(target.following.indexOf(me._id), 1)
+                await target.updateOne({ following: target.following })
+            }
+
+            // Unfollow everyone
+            for (const targetID in me.following) {
+                const target = await User.findOne({ _id: me.following[targetID] })
+
+                if (!target) continue
+
+                target.followers.splice(target.followers.indexOf(me._id), 1)
+                await target.updateOne({ followers: target.followers })
+            }
 
             // Overwrite cookie.
             res.cookie(
@@ -233,6 +251,16 @@ authApi.post(
             await User.deleteOne({ _id: me._id })
 
             res.send("Konto borttagit!")
+        } else {
+            return res.status(400).render(
+                'pages/errors/genericError.njk',
+                {
+                    errorSource: "borttagning av konto",
+                    errorCode: "Account Deletion Failed",
+                    solution: "Det ser ut som att du slog in fel lösenord.",
+                    error: errors.array()
+                }
+            )
         }
     }
 )
