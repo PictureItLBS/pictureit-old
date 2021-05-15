@@ -104,4 +104,11 @@ export default function initPosts() {
             window.location.reload()
         })
     })
+
+    // Make post publishers clickable
+    document.querySelectorAll('.post-publisher').forEach(element => {
+        element.addEventListener('click', event => {
+            window.location.href = `${window.location.origin}/app/profile/user/${element.id}`
+        })
+    })
 }

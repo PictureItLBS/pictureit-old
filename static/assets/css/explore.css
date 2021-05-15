@@ -112,7 +112,3 @@
 .post {
     margin: 3rem 0;
 }
-
-.post-publisher, .post-publisher * {
-    cursor: pointer;
-}
