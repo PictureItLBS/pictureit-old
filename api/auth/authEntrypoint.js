@@ -151,6 +151,51 @@ authApi.post(
 )
 
 authApi.post(
+    '/changePass',
+    validate('oldPass').isString().isLength({ min: 1 }),
+    validate('newPass').isString().isLength({ min: 1 }),
+    async (req, res) => {
+        const errors = validationResult(req)
+
+        if (!errors.isEmpty())
+            return res.status(400).render(
+                'pages/errors/genericError.njk',
+                {
+                    errorSource: "borttagning av konto",
+                    errorCode: "Account Deletion Failed",
+                    solution: "Den informationen du slog in kan ha innehållt icke-tillåtna tecken. (T.ex. likhetstecken i användarnamnet.) \nOm problemet återstår efter att du har försökt igen, kontakta PictureIt eller rapportera det som en bugg.",
+                    error: errors.array()
+                }
+            )
+
+        const decodedToken = verifyToken(req.cookies.apiToken, 0)
+        if (decodedToken.invalid)
+            return decodedToken.action(res)
+
+        const user = await User.findOne({ _id: decodedToken._id })
+
+        const match = await bcrypt.compare(req.body.oldPass, user.password)
+        if (match) {
+            const newHashedPassword = await bcrypt.hash(req.body.newPass, 10)
+
+            await user.updateOne({ password: newHashedPassword })
+
+            res.cookie(
+                'apiToken',
+                null,
+                {
+                    expires: new Date(Date.now() + 100000) // One hour in milliseconds.
+                }
+            )
+
+            res.redirect('/login')
+        } else {
+            res.status(400).send("Fel lösenord!")
+        }
+    }
+)
+
+authApi.post(
     '/deleteAccount',
     validate('username').isString().isAlphanumeric().isLength({ min: 1, max: 32 }),
     validate('password').isString().isLength({ min: 1 }),

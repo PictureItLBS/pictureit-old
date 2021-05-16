@@ -99,7 +99,7 @@
                     <input type="password" name="newPass" id="new-pass" placeholder="newPassword1234">
 
                     <div class="popup-actions">
-                        <input class="popup-action popup-action-yes" type="submit">
+                        <input class="popup-action popup-action-yes" type="submit" value="Ändra">
                         <button class="popup-action popup-action-no">Avbryt</button>
                     </div>
                 </form>
@@ -114,7 +114,7 @@
                     <input type="file" name="image" id="image">
 
                     <div class="popup-actions">
-                        <input class="popup-action popup-action-yes" type="submit">
+                        <input class="popup-action popup-action-yes" type="submit" value="Ändra">
                         <button class="popup-action popup-action-no">Avbryt</button>
                     </div>
                 </form>
@@ -126,10 +126,11 @@
             <div class="popup-body">
                 <form action="/api/auth/changeName" method="post">
                     <p>Nytt användarnamn:</p>
-                    <input type="text" name="newName" id="new-name" placeholder="{{ username }}_2.0">
+                    <input type="text" name="newName" id="new-name" placeholder="{{ username }}_2.0" disabled>
+                    <p>(Denna funktion stöds ej ännu, men kommer senare!)</p>
 
                     <div class="popup-actions">
-                        <input class="popup-action popup-action-yes" type="submit">
+                        <input class="popup-action popup-action-yes" type="submit" value="Ändra">
                         <button class="popup-action popup-action-no">Avbryt</button>
                     </div>
                 </form>
