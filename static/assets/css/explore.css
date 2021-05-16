@@ -114,3 +114,22 @@
 .post {
     margin: 3rem 0;
 }
+
+@media screen and (max-width: 800px) {
+    .searchbar {
+        width: 75%;
+    }
+
+    .users {
+        width: 90%;
+    }
+
+    .user-pfp {
+        width: 8rem;
+        height: 8rem;
+    }
+
+    .username {
+        font-size: 1.8rem;
+    }
+}
