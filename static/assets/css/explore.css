@@ -1,6 +1,7 @@
 .searchbar {
     position: sticky;
     top: 3rem;
+    z-index: 10;
     width: min(50%, 60rem);
 
     margin-top: 5rem;
