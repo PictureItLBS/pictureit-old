@@ -89,6 +89,9 @@ export default function initPosts() {
     // Delete buttons
     document.querySelectorAll('.action-delete').forEach(element => {
         element.addEventListener('click', async ev => {
+            if (!confirm("Är du säker på att du vill ta bort inlägget?"))
+                return console.log("Post not deleted.")
+
             const deleteReq = await fetch(
                 `/api/posts/delete/${element.id}`,
                 {
@@ -107,7 +110,7 @@ export default function initPosts() {
 
     // Make post publishers clickable
     document.querySelectorAll('.post-publisher').forEach(element => {
-        element.addEventListener('click', event => {
+        element.addEventListener('click', ev => {
             window.location.href = `${window.location.origin}/app/profile/user/${element.id}`
         })
     })

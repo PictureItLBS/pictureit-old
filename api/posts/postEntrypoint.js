@@ -69,7 +69,7 @@ postApi.delete('/delete/:id', async (req, res) => {
         })
 
     // If the user is not a teacher, and does not own the post, fail.
-    if (decodedToken.permissionLevel < 2 && post.publisher !== decodedToken._id)
+    if (decodedToken.permissionLevel < 2 && post.publisher != decodedToken._id)
         return res.status(400).json({
             success: false,
             error: "That's not your post!"
@@ -77,7 +77,7 @@ postApi.delete('/delete/:id', async (req, res) => {
 
     // Remove this post from all liked-collections for all users. (How to explain in words?)
     for (const userID in post.likedBy) {
-        const user = await User.findOne({ _id: user.likedBy[userID] })
+        const user = await User.findOne({ _id: post.likedBy[userID] })
         user.likedPosts.splice(user.likedPosts.indexOf(post._id), 1)
         await user.updateOne({ likedPosts: user.likedPosts })
     }
@@ -87,8 +87,9 @@ postApi.delete('/delete/:id', async (req, res) => {
     await publisher.updateOne({ likes: publisher.likes - post.likedBy?.length })
 
     // Remove the post from the user's profile
-    user.posts.splice(user.posts.indexOf(post._id), 1)
-    await user.updateOne({ posts: user.posts })
+    const me = await User.findOne({ _id: decodedToken._id })
+    me.posts.splice(me.posts.indexOf(post._id), 1)
+    await me.updateOne({ posts: me.posts })
 
     await Post.deleteOne({ _id: post._id })
 
