@@ -40,6 +40,7 @@ body.view-single-post .post {
 }
 
 .post-publisher {
+    grid-area: publisher;
     display: flex;
     align-items: center;
     margin-bottom: 2rem;
@@ -76,11 +77,18 @@ body.view-single-post .post {
     background-position-y: center;
 }
 
+.post-caption {
+    grid-area: caption;
+}
+
 .post-actions {
+    grid-area: actions;
     display: flex;
+    align-items: center;
 }
 
 .post-info {
+    grid-area: info;
     display: flex;
     justify-content: space-between;
 }
@@ -112,7 +120,6 @@ body.view-single-post .post {
 }
 
 .action-delete {
-    margin: 1.5rem 1rem;
     font-size: 1.8rem;
     cursor: pointer;
 
@@ -121,4 +128,21 @@ body.view-single-post .post {
 
 .action-delete:hover {
     color: var(--destructive);
+}
+
+@media screen and (max-width: 1100px) {
+    .post {
+        grid-template-areas: 'image' 'content';
+        grid-template-columns: auto;
+        grid-template-rows: 35rem auto;
+        height: auto;
+    }
+
+    .post-caption {
+        font-size: 1.8rem;
+    }
+
+    .post-image-container {
+        border-radius: 1rem 1rem 0 0;
+    }
 }
