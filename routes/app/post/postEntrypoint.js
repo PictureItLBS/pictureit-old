@@ -39,6 +39,7 @@ postEntrypoint.get('/view/:id', async (req, res) => {
             publisher: publisher?.name,
             image: imageURL,
             caption: post?.caption,
+            canDelete: decodedToken._id == post.publisher || decodedToken.permissionLevel >= 2,
             likesAmount: post?.likedBy?.length,
             isLiked: isLiked,
             publishDate: publishDate

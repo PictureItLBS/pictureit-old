@@ -42,6 +42,38 @@ profileEntrypoint.get('/', async (req, res) => {
     )
 })
 
+profileEntrypoint.get('/likedPosts', async (req, res) => {
+    // Try to verify the token, if the decodedToken is null/empty, it is not verified.
+    const decodedToken = verifyToken(req.cookies.apiToken)
+    if (decodedToken.invalid)
+        return decodedToken.action(res)
+
+    const me = await User.findOne({ _id: decodedToken._id })
+
+    const posts = []
+    for (const postID in me.likedPosts) {
+        const post = await Post.findOne({ _id: me.likedPosts[postID] })
+        const publisher = await User.findOne({ _id: post.publisher })
+        posts.push({
+            _id: post._id,
+            publisher: publisher.name,
+            caption: post.caption,
+            isLiked: true,
+            likesAmount: post.likedBy.length,
+            canDelete: me._id == post.publisher || decodedToken.permissionLevel >= 2,
+            date: `${post?.date?.toLocaleTimeString('sv-SE').split(':')[0]}:${post?.date?.toLocaleTimeString('sv-SE').split(':')[1]} - ${post?.date?.toLocaleDateString('sv-SE').split('-').reverse().join('/')}`
+        })
+    }
+    posts.reverse()
+
+    res.render(
+        'pages/app/likedPosts.njk', 
+        { 
+            posts
+        }
+    )
+})
+
 profileEntrypoint.get('/mydata', async (req, res) => {
     // Try to verify the token, if the decodedToken is null/empty, it is not verified.
     const decodedToken = verifyToken(req.cookies.apiToken, 0)

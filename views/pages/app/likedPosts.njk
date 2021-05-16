@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "../../templates/defaultHeadTags.njk" %}
+    <link rel="stylesheet" type="text/css" href="/assets/css/post.css">
+    <title>Gillade inlägg - PictureIt</title>
+</head>
+<body id="app">
+    <main class="app">
+        {% import "../../components/post.njk" as postMacro with context %}
+        <div class="posts-container">
+            {% for post in posts %}
+                {{ postMacro.post(post._id, post.publisher, post.caption, post.canDelete, post.isLiked, post.likesAmount, post.date) }}
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

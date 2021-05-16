@@ -7,6 +7,6 @@
 </head>
 <body class="view-single-post">
     {% import "../../components/post.njk" as postMacro with context %}
-    {{ postMacro.post(postID, publisher, caption, isLiked, likesAmount, publishDate) }}
+    {{ postMacro.post(postID, publisher, caption, canDelete, isLiked, likesAmount, publishDate) }}
 </body>
 </html>
