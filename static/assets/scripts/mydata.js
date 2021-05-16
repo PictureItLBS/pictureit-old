@@ -4,16 +4,18 @@ const downloadLink = document.querySelector('#download-my-data')
 
 downloadLink.addEventListener('click', event => {
     event.preventDefault()
-    popup.window(
-        "Vill du ladda ned din data?",
-        "OBS! Det kan ta lite tid innan från det att du klickar \"Fortsätt\" tills din data laddas ned.",
-        {
-            action: () => window.location.href = downloadLink.href,
-            text: "Fortsätt"
-        },
-        {
-            action: () => {},
-            text: "Avbryt"
-        }
-    )
+    popup.show('download-data')
 })
+
+document.querySelectorAll('.popup-action-no').forEach(element =>
+    element.addEventListener('click', ev => popup.hide(ev))
+)
+
+document.querySelector('.popup-action-download-data').addEventListener('click', ev => {
+    window.location.href = downloadLink.href
+    popup.hide()
+})
+
+document.querySelector('.change-pass-btn').addEventListener('click', ev => popup.show('change-pass'))
+document.querySelector('.change-pfp-btn').addEventListener('click', ev => popup.show('change-pfp'))
+document.querySelector('.change-name-btn').addEventListener('click', ev => popup.show('change-name'))

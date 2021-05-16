@@ -223,7 +223,7 @@ main.app {
     POPUPS
 */
 .popup-container {
-    display: grid;
+    display: none;
     place-items: center;
 
     position: fixed;
@@ -244,9 +244,22 @@ main.app {
     padding: 4rem 5rem;
     max-width: 60vw;
 
-    display: grid;
+    display: none;
     grid-template-areas: 'title' 'text' 'actions';
     border-radius: 1rem 1rem 4rem 1rem;
+}
+
+.popup-visible {
+    display: grid;
+}
+
+.popup-actions {
+    display: flex;
+    margin-top: 2rem;
+}
+
+.popup-action {
+    margin-right: 2rem;
 }
 
 .popup-action-no {

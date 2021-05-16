@@ -55,7 +55,7 @@ h1, h2 {
     color: var(--primary);
 }
 
-p {
+.info-table p {
     margin-bottom: 3rem;
 }
 
