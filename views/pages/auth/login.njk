@@ -14,11 +14,11 @@
     <div class="form-container">
         <form action="/api/auth/login" method="post">
             <h1>
-                Logga In
+                {{ "Fel Lösenord, Försök Igen" if username else "Logga In" }}
             </h1>
 
             <p>Användarnamn</p>
-            <input type="text" name="username" id="username" placeholder="FancyCat">
+            <input type="text" name="username" id="username" placeholder="FancyCat" value="{{ username }}">
 
             <p>Lösenord</p>
             <input type="password" name="password" id="password" placeholder="password1234">

@@ -141,7 +141,7 @@ authApi.post(
             res.redirect('/app/home')
         } else {
             res.status(400).render(
-                'pages/errors/wrongPassword.njk',
+                'pages/auth/login.njk',
                 {
                     username
                 }

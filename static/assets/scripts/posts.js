@@ -83,6 +83,8 @@ export default function initPosts() {
             tmpElement.select()
             document.execCommand("copy")
             document.body.removeChild(tmpElement)
+
+            alert("Kopierat länken!")
         })
     })
 
