@@ -323,6 +323,7 @@ authApi.get('/downloadData', async (req, res) => {
 
     const userJSON = JSON.parse(JSON.stringify(user)) // For some reason doing this is necessary to remove "profilePicture" from the JSON file...
     delete userJSON.profilePicture
+    delete userJSON.password
     zip.file('user.json', JSON.stringify(userJSON, null, 4))
 
     const posts = []
