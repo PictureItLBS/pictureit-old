@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="se">
+<head>
+    {% include "../templates/defaultHeadTags.njk" %}
+    <link rel="stylesheet" type="text/css" href="/assets/css/forms.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/admin.css">
+    <title>Admin - PictureIt</title>
+</head>
+<body>
+    <header>
+        Admin/Lärare
+    </header>
+
+    <form action="/api/admin/resetPassword" method="post">
+        <h1>Återställ lösenord på användare</h1>
+        
+        <p>Användarnamn</p>
+        <input type="text" name="username" id="username" placeholder="FancyCat">
+
+        <p>Nytt lösenord:</p>
+        <input type="password" name="password" id="password" placeholder="password1234">
+
+        <input type="submit" value="Återställ Lösenord!">
+        <h2 class="warning">Kom ihåg!</h2>
+        <p>Den här funktionen ska bara användas om en användare har glömt sitt lösenord. Kom ihåg att kontrollera att användaren stämmer överens med kontots namn.</p>
+    </form>
+</body>
+</html>
