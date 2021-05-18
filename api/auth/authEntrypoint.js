@@ -114,7 +114,7 @@ authApi.post(
             )
 
         // Check if the user's account is locked.
-        if (user.password = "LOCKED_ACCOUNT")
+        if (user.password == "LOCKED_ACCOUNT")
                 return res.send("Tyvärr så är ditt konto låst. Vänligen prata med en lärare eller admin.")
 
         const match = await bcrypt.compare(password, user.password)
