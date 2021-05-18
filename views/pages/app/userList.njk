@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "../../templates/defaultHeadTags.njk" %}
+    <link rel="stylesheet" type="text/css" href="/assets/css/explore.css">
+    <script src="/assets/scripts/explore.js" type="module" defer></script>
+    <title>Gillade inlägg - PictureIt</title>
+</head>
+<body id="app">
+    <main class="app">
+        <div class="users" style="">
+            <h1 class="users-title">{{ username }} {{ "- följare" if followers else "följer" }}</h1>
+            {% for user in users %}
+                <div class="user" id="{{ user.name }}">
+                    <div class="user-pfp" id="{{ user.name }}"></div>
+                    <p class="username">{{ user.name }}</p>
+                </div>
+            {% endfor %}
+            {% if not users %}
+                <p>{{ username }} {{ "är inte följd av någon." if followers else "följer inga." }}</p>
+            {% endif %}
+        </div>
+    </main>
+</body>
+</html>

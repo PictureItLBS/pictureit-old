@@ -50,12 +50,30 @@ h1.username {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+
+    transition: color .5s;
+}
+
+.user-stat-followers, .user-stat-following {
+    cursor: pointer;
+}
+
+.user-stat-followers:hover, .user-stat-following:hover {
+    color: var(--primary);
+}
+
+.user-stat-followers:hover .icon > *, .user-stat-following:hover .icon > * {
+    fill: var(--primary);
 }
 
 .user-stat p {
     font-size: 2.4rem;
     margin-left: 1rem;
     width: max-content;
+}
+
+.user-stat .icon > * {
+    transition: fill .5s;
 }
 
 .user-actions {

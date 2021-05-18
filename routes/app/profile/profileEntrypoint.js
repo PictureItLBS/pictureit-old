@@ -185,4 +185,62 @@ profileEntrypoint.get('/id/:id', async (req, res) => {
     )
 })
 
+profileEntrypoint.get('/user/:name/followers', async (req, res) => {
+    // Try to verify the token, if the decodedToken is null/empty, it is not verified.
+    const decodedToken = verifyToken(req.cookies.apiToken)
+    if (decodedToken.invalid)
+        return decodedToken.action(res)
+
+    const user = await User.findOne({ name: req.params.name })
+    if (!user)
+        return res.status(404).send('Error 404: användaren hittades inte.')
+
+    const users = []
+    for (const followerID in user.followers) {
+        const follower = await User.findOne({ _id: user.followers[followerID] })
+        users.push({
+            _id: follower._id,
+            name: follower.name,
+        })
+    }
+
+    res.render(
+        'pages/app/userList.njk', 
+        { 
+            users,
+            username: req.params.name,
+            followers: true
+        }
+    )
+})
+
+profileEntrypoint.get('/user/:name/following', async (req, res) => {
+    // Try to verify the token, if the decodedToken is null/empty, it is not verified.
+    const decodedToken = verifyToken(req.cookies.apiToken)
+    if (decodedToken.invalid)
+        return decodedToken.action(res)
+
+    const user = await User.findOne({ name: req.params.name })
+    if (!user)
+        return res.status(404).send('Error 404: användaren hittades inte.')
+
+    const users = []
+    for (const followingID in user.follwoing) {
+        const following = await User.findOne({ _id: user.following[followingID] })
+        users.push({
+            _id: following._id,
+            name: following.name,
+        })
+    }
+
+    res.render(
+        'pages/app/userList.njk', 
+        { 
+            users,
+            username: req.params.name,
+            followers: false
+        }
+    )
+})
+
 export default profileEntrypoint

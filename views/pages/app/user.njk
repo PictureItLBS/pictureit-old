@@ -14,12 +14,12 @@
             <div class="user-pfp" id="{{ user.name }}"></div>
             <h1 class="username">{{ user.name }}</h1>
             <div class="user-stats">
-                <div class="user-stat user-stat-followers">
+                <div class="user-stat user-stat-followers" id="{{ user.name }}">
                     <span class="icon" icon="profile"></span>
                     <p><span class="followers-amount" postID="{{ user._id }}">{{ user.followers.length }}</span> följare</p>
                 </div>
 
-                <div class="user-stat user-stat-following">
+                <div class="user-stat user-stat-following" id="{{ user.name }}">
                     <span class="icon" icon="profile"></span>
                     <p>{{ user.following.length }} följer</p>
                 </div>
