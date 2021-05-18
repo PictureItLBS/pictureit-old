@@ -155,6 +155,34 @@ authApi.post(
 )
 
 authApi.post(
+    '/changeName',
+    validate('newName').isString().isAlphanumeric().isLength({ min: 1, max: 32 }),
+    async (req, res) => {
+        const errors = validationResult(req)
+
+        if (!errors.isEmpty())
+            return res.status(400).render(
+                'pages/errors/genericError.njk',
+                {
+                    errorSource: "namnbyte av konto",
+                    errorCode: "Account Name Change Failed",
+                    solution: "Den informationen du slog in kan ha innehållt icke-tillåtna tecken. (T.ex. likhetstecken i användarnamnet.) \nOm problemet återstår efter att du har försökt igen, kontakta PictureIt eller rapportera det som en bugg.",
+                    error: errors.array()
+                }
+            )
+
+        const decodedToken = verifyToken(req.cookies.apiToken, 0)
+        if (decodedToken.invalid)
+            return decodedToken.action(res)
+
+        const user = await User.findOne({ _id: decodedToken._id })
+        await user.updateOne({ name: req.body.newName })
+
+        res.redirect('back')
+    }
+)
+
+authApi.post(
     '/changePass',
     validate('oldPass').isString().isLength({ min: 1 }),
     validate('newPass').isString().isLength({ min: 1 }),
