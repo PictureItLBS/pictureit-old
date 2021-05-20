@@ -64,3 +64,7 @@ input.warning {
     margin-top: 2rem;
     margin-bottom: 0;
 }
+
+a, a:visited {
+    color: var(--primary)
+}
