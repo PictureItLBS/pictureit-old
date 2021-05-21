@@ -3,7 +3,7 @@ import feedEntrypoint from './feed/feedEntrypoint.js'
 import exploreEntrypoint from './explore/exploreEntrypoint.js'
 import postEntrypoint from './post/postEntrypoint.js'
 import profileEntrypoint from './profile/profileEntrypoint.js'
-import verifyToken from '../../libs/verifyToken.js'
+import adminEntrypoint from './admin/adminEntrypoint.js'
 
 const appEntrypoint = Router()
 
@@ -18,12 +18,6 @@ appEntrypoint.use('/post', postEntrypoint)
 
 appEntrypoint.use('/profile', profileEntrypoint)
 
-appEntrypoint.use('/admin', (req, res) => {
-    const decodedToken = verifyToken(req.cookies.apiToken, 2)
-    if (decodedToken.invalid)
-        return decodedToken.action(res)
-
-    res.render('pages/admin.njk')
-})
+appEntrypoint.use('/admin', adminEntrypoint)
 
 export default appEntrypoint

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="se">
 <head>
-    {% include "../templates/defaultHeadTags.njk" %}
+    {% include "../../templates/defaultHeadTags.njk" %}
     <link rel="stylesheet" type="text/css" href="/assets/css/forms.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/admin.css">
     <title>Admin - PictureIt</title>
@@ -44,6 +44,13 @@
 
         <input type="submit" value="Ta Bort Konto!">
         <p class="warning">Det här kommer att <b>permanent</b> ta bort ett konto. Kom ihåg att kontrollera att användaren stämmer överens med kontots namn.</p>
+    </form>
+
+    <form action="#">
+        <h1>Verifiera användare</h1>
+        <p>
+            <a href="/app/admin/unverifiedUsers">Se icke-verifierade användare.</a>
+        </p>
     </form>
 </body>
 </html>
