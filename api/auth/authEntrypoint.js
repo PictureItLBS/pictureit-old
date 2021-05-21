@@ -65,7 +65,12 @@ authApi.post(
         // Save the user in the database. If it fails send an error to the user.
         try {
             await user.save()
-            res.render('pages/auth/message.njk')
+            res.render(
+                'pages/auth/message.njk',
+                {
+                    link: `https://pictureit.xyz/app/profile/user/${username}`
+                }
+            )
         } catch (err) {
             res.status(400).render(
                 'pages/errors/genericError.njk',
