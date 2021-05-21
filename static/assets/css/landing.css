@@ -1,5 +1,11 @@
 img {
 
-    width: 150px;
-    height: 150px;
+    width: 375px;
+    height: 550px;
+  }
+span.var--primary {
+    color: #53FB5E;
+  }
+span.var--accent {
+  color: #AC53FB;
   }
