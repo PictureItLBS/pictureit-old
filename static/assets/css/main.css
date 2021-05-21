@@ -128,26 +128,35 @@ nav.sidebar {
     padding: 5rem 3rem
 }
 
-.sidebar a, .sidebar a:visited {
+.sidebar-entry, .sidebar-entry:visited {
     text-decoration: none;
     color: var(--text);
     display: flex;
     align-items: center;
+
+    margin: 2rem 0;
 }
 
-.sidebar .icon {
+.sidebar-entry * {
+    transition: color .3s, fill .15s;
+}
+
+.sidebar-entry .icon {
     width: 4rem;
     height: 4rem;
 }
 
-.sidebar-entry {
+.sidebar-entry p {
     font-size: 2.4rem;
-    margin-left: 1rem;
-    margin-bottom: 0;
+    margin: .5rem 0 0 1rem;
 }
 
-.sidebar a:hover {
+.sidebar-entry:hover, .sidebar-entry.active {
     color: var(--primary);
+}
+
+.sidebar-entry:hover .icon > *, .sidebar-entry.active .icon > * {
+    fill: var(--primary);
 }
 
 main.app {
@@ -320,9 +329,18 @@ main.app {
         justify-content: center;
     }
 
-    nav.sidebar .icon {
+    .sidebar-entry {
+        margin: 0;
+    }
+
+    .sidebar-entry .icon {
         width: 5rem;
         height: 5rem;
+        margin: 0 2rem;
+    }
+
+    .sidebar-entry p {
+        display: none;
     }
 
     .quickies {
