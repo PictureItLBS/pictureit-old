@@ -21,7 +21,7 @@ const followerBtn = document.querySelector('.user-stat-followers')
 followerBtn.addEventListener('click', ev => window.location.pathname = `/app/profile/user/${followerBtn.id}/followers`)
 
 const followingBtn = document.querySelector('.user-stat-following')
-followingBtn.addEventListener('click', ev => window.location.pathname = `/app/profile/user/${followingBtn.id}/followers`)
+followingBtn.addEventListener('click', ev => window.location.pathname = `/app/profile/user/${followingBtn.id}/following`)
 
 
 /*

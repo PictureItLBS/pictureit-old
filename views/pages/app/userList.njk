@@ -8,7 +8,7 @@
 </head>
 <body id="app">
     <main class="app">
-        <div class="users" style="">
+        <div class="users">
             <h1 class="users-title">{{ username }} {{ "- följare" if followers else "följer" }}</h1>
             {% for user in users %}
                 <div class="user" id="{{ user.name }}">
@@ -16,8 +16,9 @@
                     <p class="username">{{ user.name }}</p>
                 </div>
             {% endfor %}
-            {% if not users %}
-                <p>{{ username }} {{ "är inte följd av någon." if followers else "följer inga." }}</p>
+
+            {% if not users[0] %}
+                <p>{{ username }} {{ "är inte följd av någon." if followers else "följer ingen." }}</p>
             {% endif %}
         </div>
     </main>

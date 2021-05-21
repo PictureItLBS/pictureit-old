@@ -225,7 +225,7 @@ profileEntrypoint.get('/user/:name/following', async (req, res) => {
         return res.status(404).send('Error 404: användaren hittades inte.')
 
     const users = []
-    for (const followingID in user.follwoing) {
+    for (const followingID in user.following) {
         const following = await User.findOne({ _id: user.following[followingID] })
         users.push({
             _id: following._id,
