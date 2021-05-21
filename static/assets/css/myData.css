@@ -10,11 +10,17 @@
 
 .profile-picture {
     grid-area: pfp;
+    
+    background-image: url(/assets/resources/logo.png);
+    background-size: cover;
+    background-position: center;
+    
+    margin: 0 5vmin 0 10vw;
+    border-radius: 100%;
+    box-shadow: 0 16px 32px var(--darker);
 
     width: 25vw;
-    height: auto;
-
-    margin: 0 5vmin 0 10vw;
+    height: 25vw;
 }
 
 .info-container {
@@ -29,8 +35,32 @@
     border-radius: 1.6rem 1.6rem 6.4rem 1.6rem;
 }
 
+.info-table {
+    display: grid;
+    grid-template-areas: 'col-1 col-2';
+    grid-template-columns: 1fr 1fr;
+
+    margin-top: 3rem;
+}
+
+.info-table > .col-1 {
+    grid-area: col-1;
+}
+
+.info-table > .col-2 {
+    grid-area: col-2;
+}
+
+h1, h2 {
+    color: var(--primary);
+}
+
+.info-table p {
+    margin-bottom: 3rem;
+}
+
 a {
-    display: block;
+    display: inline;
     color: var(--primary);
 }
 

@@ -1,0 +1,23 @@
+<h1>
+    Dette är en experimentell plats!
+</h1>
+
+<h2>
+    Ladda upp post
+</h2>
+<form action="/api/posts/new" method="post" enctype="multipart/form-data">
+    <input type="file" name="image" id="image">
+
+    <textarea name="caption" id="caption"></textarea>
+
+    <input type="submit" value="Yes">
+</form>
+
+<h2>
+    Ladda upp profilbild
+</h2>
+<form action="/api/users/profilePicture/new" method="post" enctype="multipart/form-data">
+    <input type="file" name="image" id="image">
+
+    <input type="submit" value="Yes">
+</form>

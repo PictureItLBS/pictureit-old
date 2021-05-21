@@ -1,1 +1,58 @@
-{{ username }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "../../templates/defaultHeadTags.njk" %}
+    <link rel="stylesheet" href="/assets/css/post.css">
+    <link rel="stylesheet" href="/assets/css/profile.css">
+    <script src="/assets/scripts/profile.js" type="module" defer></script>
+    <title>{{ user.name }} - PictureIt</title>
+</head>
+<body id="app">
+    {% include "../../components/sidebar.njk" %}
+    <main class="app">
+        <div class="user-info">
+            <div class="user-pfp" id="{{ user.name }}"></div>
+            <h1 class="username">{{ user.name }}</h1>
+            <div class="user-stats">
+                <div class="user-stat user-stat-followers" id="{{ user.name }}">
+                    <span class="icon" icon="profile"></span>
+                    <p><span class="followers-amount" postID="{{ user._id }}">{{ user.followers.length }}</span> följare</p>
+                </div>
+
+                <div class="user-stat user-stat-following" id="{{ user.name }}">
+                    <span class="icon" icon="profile"></span>
+                    <p>{{ user.following.length }} följer</p>
+                </div>
+
+                <div class="user-stat user-stat-likes">
+                    <span class="icon" icon="like"></span>
+                    <p>{{ user.likes }} gillningar</p>
+                </div>
+            </div>
+            <div class="user-actions">
+                {% if myProfile %}
+                    <button class="action action-mydata">Profilinställningar</button>
+                {% else %}
+                    <button class="action action-follow {{ "active" if following }}" id="{{ user._id }}">{{ "Avfölj" if following else "Följ" }}</button>
+                {% endif %}
+
+                {% if teacherView and unverified %}
+                    <button class="action action-validate" id="{{ user._id }}">Bekräfta</button>
+                {% endif %}
+
+                {% if adminView and notTeacher %}
+                    <button class="action action-promote" id="{{ user._id }}">Gör Till Lärare</button>
+                {% endif %}
+            </div>
+        </div>
+
+        {% import "../../components/post.njk" as postMacro with context %}
+        <div class="posts-container">
+            {% for post in posts %}
+                {{ postMacro.post(post._id, post.publisher, post.caption, post.canDelete, post.isLiked, post.likesAmount, post.date) }}
+            {% endfor %}
+        </div>
+    </main>
+    {% include "../../components/quickies.njk" %}
+</body>
+</html>

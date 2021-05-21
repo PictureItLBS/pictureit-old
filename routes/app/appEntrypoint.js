@@ -1,15 +1,29 @@
 import { Router } from 'express'
+import feedEntrypoint from './feed/feedEntrypoint.js'
+import exploreEntrypoint from './explore/exploreEntrypoint.js'
+import postEntrypoint from './post/postEntrypoint.js'
 import profileEntrypoint from './profile/profileEntrypoint.js'
-
+import verifyToken from '../../libs/verifyToken.js'
 
 const appEntrypoint = Router()
 
-appEntrypoint.get('/home', (req, res) => res.render('pages/app/feed.njk'))
 
-appEntrypoint.get('/explore', (req, res) => res.render('pages/app/explore.njk'))
+
+appEntrypoint.use('/home', feedEntrypoint)
+
+appEntrypoint.use('/explore', exploreEntrypoint)
+
+appEntrypoint.get('/upload', (req, res) => res.render('pages/app/upload.njk'))
+appEntrypoint.use('/post', postEntrypoint)
 
 appEntrypoint.use('/profile', profileEntrypoint)
 
-appEntrypoint.get('/user/:username', (req, res) => res.render('pages/app/user.njk', {username: req.params.username}))
+appEntrypoint.use('/admin', (req, res) => {
+    const decodedToken = verifyToken(req.cookies.apiToken, 2)
+    if (decodedToken.invalid)
+        return decodedToken.action(res)
+
+    res.render('pages/admin.njk')
+})
 
 export default appEntrypoint

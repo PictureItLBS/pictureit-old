@@ -1,5 +1,30 @@
-<form action="/api/auth/login" method="post">
-    <input type="text" name="username" id="username" placeholder="Användarnamn">
-    <input type="text" name="password" id="password" placeholder="Lösenord">
-    <input type="submit" value="Logga in!">
-</form>
+<!DOCTYPE html>
+<html lang="se">
+<head>
+    {% include "../../templates/defaultHeadTags.njk" %}
+    <link rel="stylesheet" type="text/css" href="/assets/css/forms.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/login.css">
+    <title>Logga In - PictureIt</title>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="/assets/resources/logo.svg" class="logo">
+    </div>
+
+    <div class="form-container">
+        <form action="/api/auth/login" method="post">
+            <h1>
+                {{ "Fel Lösenord, Försök Igen" if username else "Logga In" }}
+            </h1>
+
+            <p>Användarnamn</p>
+            <input type="text" name="username" id="username" placeholder="FancyCat" value="{{ username }}">
+
+            <p>Lösenord</p>
+            <input type="password" name="password" id="password" placeholder="password1234">
+            <input type="submit" value="Logga In">
+            <a href="/docs/article/account_login" class="help-link">Behöver du hjälp?</a>
+        </form>
+    </div>
+</body>
+</html>

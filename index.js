@@ -61,3 +61,8 @@ App.use('/api', apiRoutes) // In the longterm you should consider binding them t
 App.listen(5500, () => {
     console.log("The server has started and is running on http://localhost:5500")
 })
+
+// CLEANUP
+process.on('exit', () => {
+    mongoose.disconnect()
+})

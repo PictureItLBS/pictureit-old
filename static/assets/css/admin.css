@@ -1,0 +1,29 @@
+body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+header {
+    font-size: 4.8rem;
+    margin: 5rem 0;
+    text-align: center;
+}
+
+header, h1 {
+    color: var(--primary);
+    width: 100%;
+}
+
+form {
+    background-color: var(--standout);
+    padding: 4rem 5rem;
+    margin: 4rem 5rem;
+    border-radius: 1rem 1rem 4rem 1rem;
+    width: min(70rem, 100%);
+}
+
+.warning{
+    color: var(--destructive);
+    margin-top: 2rem;
+}

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "../../templates/defaultHeadTags.njk" %}
+    <link rel="stylesheet" type="text/css" href="/assets/css/post.css">
+    <title>Post av {{ publisher }}</title>
+</head>
+<body class="view-single-post">
+    {% import "../../components/post.njk" as postMacro with context %}
+    {{ postMacro.post(postID, publisher, caption, canDelete, isLiked, likesAmount, publishDate) }}
+</body>
+</html>

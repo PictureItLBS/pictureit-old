@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="se">
+<head>
+    {% include "../templates/defaultHeadTags.njk" %}
+    <link rel="stylesheet" type="text/css" href="/assets/css/forms.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/admin.css">
+    <title>Admin - PictureIt</title>
+</head>
+<body>
+    <header>
+        Admin/Lärare
+    </header>
+
+    <form action="/api/admin/resetPassword" method="post">
+        <h1>Återställ lösenord på användare</h1>
+        
+        <p>Användarnamn:</p>
+        <input type="text" name="username" id="username" placeholder="FancyCat">
+
+        <p>Nytt lösenord:</p>
+        <input type="password" name="password" id="password" placeholder="password1234">
+
+        <input type="submit" value="Återställ Lösenord!">
+        <p class="warning">Kom ihåg!</p>
+        <p>Den här funktionen ska bara användas om en användare har glömt sitt lösenord. Kom ihåg att kontrollera att så att du slår in rätt användare.</p>
+    </form>
+
+    <form action="/api/admin/lockUser" method="post">
+        <h1>Lås konto</h1>
+        
+        <p>Användarnamn:</p>
+        <input type="text" name="username" id="username" placeholder="FancyCat">
+
+        <input type="submit" value="Lås Konto!">
+        <p class="warning">Observera!</p>
+        <p>Den här funktionen kan låsa en användares konto, och där med kan de inte logga in. För att kontot ska kunna användas igen behöver en admin/lärare skapa ett nytt lösenord för kontot. Kom ihåg att kontrollera att användaren stämmer överens med kontots namn.</p>
+    </form>
+
+    <form action="/api/admin/deleteUser" method="post">
+        <h1>Ta bort konto</h1>
+
+        <p>Användarnamn:</p>
+        <input type="text" name="username" id="username" placeholder="FancyCat">
+
+        <input type="submit" value="Ta Bort Konto!">
+        <p class="warning">Det här kommer att <b>permanent</b> ta bort ett konto. Kom ihåg att kontrollera att användaren stämmer överens med kontots namn.</p>
+    </form>
+</body>
+</html>

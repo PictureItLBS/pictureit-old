@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import mongoose_fuzzy_searching from 'mongoose-fuzzy'
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -13,16 +14,20 @@ const userSchema = new mongoose.Schema({
         min: 1,
         max: 1024
     },
+    profilePicture: {
+        data: Buffer,
+        contentType: String
+    },
     permissionLevel: {
         type: Number,
         default: 0
     },
     followers: {
-        type: Array,
+        type: [String],
         default: []
     },
     following: {
-        type: Array,
+        type: [String],
         default: []
     },
     likes: {
@@ -30,13 +35,18 @@ const userSchema = new mongoose.Schema({
         default: 0
     },
     likedPosts: {
-        type: Array,
+        type: [String],
         default: []
     },
     posts: {
-        type: Array,
+        type: [String],
         default: []
     }
 })
+
+userSchema.plugin(mongoose_fuzzy_searching, {
+    fields: ["name"]
+})
+
 
 export default mongoose.model('User', userSchema)

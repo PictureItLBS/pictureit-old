@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="se">
+<head>
+    {% include "../../templates/defaultHeadTags.njk" %}
+    <link rel="stylesheet" href="/assets/css/docs.css">
+    <title>Skapa Konto - PictureIt</title>
+</head>
+<body>
+    <header>
+        Skapa Konto
+    </header>
+    <section>
+        <h1>Hur skapar jag ett konto?</h1>
+        <p>
+            Gå till <a href="/register">registrerings-sidan</a>. Slå in informationen som förfrågas. <br>
+            Du förväntas läsa (och acceptera) vårt <a href="/docs/article/user_agreement">användaravtal</a> och vår <a href="/docs/article/privacy_policy">sekretess policy</a>.
+        </p>
+        <h1>Problem</h1>
+        
+        <h2>Användarnamnet är upptaget</h2>
+        <p>
+            Det kan hända att användarnamnet du vill ha är upptaget. I så fall får du komma på ett nytt eller lägga till några siffror på slutet.
+        </p>
+
+        <h1>Begränsningar</h1>
+        <p>
+            Ditt användarnamn får max vara 32 tecken.
+        </p>
+
+        <h1>Frågor</h1>
+        
+        <h2>Hur lagras lösenordet?</h2>
+        <p>
+            Lösenordet blir saltat och hashat innan det lagras i vår databas. Det betyder att lösenordet ser ut som slumpmässiga tecken och att man inte längre kan veta vad lösenordet var från början. <br>
+            Ex: Lösenordet <i>test</i> skulle lagras som <i>$2b$10$9TI..yK23SqmNUCuEtBVe.uOC77UNMKCbxDe9eGoc0ji.Op4fvRZe</i>
+        </p>
+
+        <h2>Jag har skapat ett konto, men kan inte göra något?</h2>
+        <p>
+            Ditt konto måste bli godkänt/bekräftat av en lärare innan du kan använda PictureIt.
+            Dock kan du <a href="/docs/article/delete_account">ta bort ditt konto</a> ditt konto inann dess.
+        </p>
+        <p>
+            Efter att du har skapat ditt konto måste du <a href="/login">logga in</a> för att nå plattformen.
+            Du loggas alltså inte automatiskt in när du skapar ett konto.
+        </p>
+    </section>
+</body>
+</html>

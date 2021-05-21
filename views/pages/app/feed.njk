@@ -1,1 +1,21 @@
-{% include "../../components/sidebar.njk" %}
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "../../templates/defaultHeadTags.njk" %}
+    <link rel="stylesheet" href="/assets/css/post.css">
+    <title>PictureIt - Feed</title>
+</head>
+
+<body id="app">
+    {% include "../../components/sidebar.njk" %}
+    <main class="app">
+        {% import "../../components/post.njk" as postMacro with context %}
+        <div class="posts-container">
+            {% for post in posts %}
+                {{ postMacro.post(post._id, post.publisher, post.caption, post.canDelete, post.isLiked, post.likesAmount, post.date) }}
+            {% endfor %}
+        </div>
+    </main>
+    {% include "../../components/quickies.njk" %}
+</body>
+</html>

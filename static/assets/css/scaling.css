@@ -1,0 +1,84 @@
+/* 
+    THIS ALL JUST SCALES THE FONT SO THAT EVERYTHING LOOKS NICE ON ALL SCREENS B)
+*/
+
+@media screen and (min-width: 1px) {
+    :root {
+        font-size: 10px;
+    }
+}
+@media screen and (min-width: 170px) {
+    :root {
+        font-size: 3pt;
+    }
+}
+@media screen and (min-width: 235px) {
+    :root {
+        font-size: 3.5pt;
+    }
+}
+@media screen and (min-width: 270px) {
+    :root {
+        font-size: 4pt;
+    }
+}
+@media screen and (min-width: 350px) {
+    :root {
+        font-size: 5pt;
+    }
+}
+@media screen and (min-width: 400px) {
+    :root {
+        font-size: 6pt;
+    }
+}
+@media screen and (min-width: 500px) {
+    :root {
+        font-size: 6.5pt;
+    }
+}
+@media screen and (min-width: 600px) {
+    :root {
+        font-size: 7pt;
+    }
+}
+@media screen and (min-width: 700px) {
+    :root {
+        font-size: 7.5pt;
+    }
+}
+@media screen and (min-width: 802px) {
+    :root {
+        font-size: 5pt;
+    }
+}
+@media screen and (min-width: 1000px) {
+    :root {
+        font-size: 5.5pt;
+    }
+}
+@media screen and (min-width: 1200px) {
+    :root {
+        font-size: 6pt;
+    }
+}
+@media screen and (min-width: 1500px) {
+    :root {
+        font-size: 6.5pt;
+    }
+}
+@media screen and (min-width: 1800px) {
+    :root {
+        font-size: 7pt;
+    }
+}
+@media screen and (min-width: 2500px) {
+    :root {
+        font-size: 7.5pt;
+    }
+}
+@media screen and (min-width: 3000px) {
+    :root {
+        font-size: 8pt;
+    }
+}

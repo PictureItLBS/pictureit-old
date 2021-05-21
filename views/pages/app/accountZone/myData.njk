@@ -2,66 +2,138 @@
 <html lang="en">
 <head>
     {% include "../../../templates/defaultHeadTags.njk" %}
+    <link rel="stylesheet" type="text/css" href="/assets/css/forms.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/myData.css">
+    <script src="/assets/scripts/mydata.js" type="module" defer></script>
     <title>Min data</title>
 </head>
 <body class="my-data--grid">
-    <img src="/assets/resources/logo.png" class="profile-picture">
+    <div style="background-image: url({{ profilePictureUrl }})" class="profile-picture"></div>
     <main class="info-container">
         <h1>
             Din Information
         </h1>
 
-        <h2>
-            Användarnamn
-        </h2>
-        <p>
-            {{ username }}
-        </p>
+        <div class="info-table">
+            <div class="col-1">
+                <h2>
+                    Användarnamn
+                </h2>
+                <p>
+                    {{ username }}
+                </p>
 
-        <h2>
-            Följer/följare
-        </h2>
-        <p>
-            {{ following }}/{{ followers }}
-        </p>
+                <h2>
+                    Följer/följare
+                </h2>
+                <p>
+                    {{ following }}/{{ followers }}
+                </p>
 
-        <h2>
-            Gillningar
-        </h2>
-        <p>
-            {{ likes }}
-        </p>
+                <h2>
+                    Gillningar
+                </h2>
+                <p>
+                    {{ likes }}
+                </p>
+            </div>
+            <div class="col-2">
+                <h2>
+                    Tillståndsnivå
+                </h2>
+                <p>
+                    {{ permissionLevel }}
+                </p>
 
-        <h2>
-            Tillståndsnivå
-        </h2>
-        <p>
-            {{ permissionLevel }}
-        </p>
+                <h2>
+                    Antal posts
+                </h2>
+                <p>
+                    {{ postsAmount }}
+                </p>
 
-        <h2>
-            Antal posts
-        </h2>
-        <p>
-            {{ postsAmount }}
-        </p>
+                <h2>
+                    Posts du gillat
+                </h2>
+                <p>
+                    {{ likedPostsAmount }}
+                </p>
 
-        <h2>
-            Posts du gillat
-        </h2>
-        <p>
-            {{ likedPostsAmount }}
-        </p>
+            </div>
+        </div>
 
-        <a href="#" id="download-my-data">Ladda ned min data</a>
-        <a href="#" id="delete-account">Ta bort mitt konto</a>
+        <p class="links">
+            <a href="/api/auth/downloadData" id="download-my-data" style="color: var(--primary)">Ladda ned min data</a> <br>
+            <a href="/app/profile/mydata/deleteAccount" id="delete-account">Ta bort mitt konto</a>
+        </p>
 
         <div class="buttons">
-            <button>Ändra Lösenord</button>
-            <button>Ändra Profilbild</button>
-            <button>Ändra Användarnamn</button>
+            <button class="change-pass-btn">Ändra Lösenord</button>
+            <button class="change-pfp-btn">Ändra Profilbild</button>
+            <button class="change-name-btn">Ändra Användarnamn</button>
         </div>
     </main>
+
+    <div class="popup-container">
+        <div class="popup popup-download-data">
+            <h1 class="popup-title">Vill du ladda ned din data?</h1>
+            <div class="popup-body">
+                <p>
+                    OBS! Det kan ta lite tid innan från det att du klickar "Fortsätt" tills din data laddas ned.
+                </p>
+            </div>
+            <div class="popup-actions">¨
+                <button class="popup-action popup-action-yes popup-action-download-data">Fortsätt</button>
+                <button class="popup-action popup-action-no">Avbryt</button>
+            </div>
+        </div>
+
+        <div class="popup popup-change-pass">
+            <h1 class="popup-title">Vill du ändra ditt lösenord?</h1>
+            <div class="popup-body">
+                <form action="/api/auth/changePass" method="post">
+                    <p>Nuvarande lösenord:</p>
+                    <input type="password" name="oldPass" id="old-pass" placeholder="password1234">
+
+                    <p>Nytt lösenord:</p>
+                    <input type="password" name="newPass" id="new-pass" placeholder="newPassword1234">
+
+                    <div class="popup-actions">
+                        <input class="popup-action popup-action-yes" type="submit" value="Ändra">
+                        <button class="popup-action popup-action-no">Avbryt</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="popup popup-change-pfp">
+            <h1 class="popup-title">Vill du ändra din profilbild?</h1>
+            <div class="popup-body">
+                <form action="/api/users/profilePicture/new" method="post" enctype="multipart/form-data">
+                    <p>Välj bild:</p>
+                    <input type="file" name="image" id="image">
+
+                    <div class="popup-actions">
+                        <input class="popup-action popup-action-yes" type="submit" value="Ändra">
+                        <button class="popup-action popup-action-no">Avbryt</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="popup popup-change-name">
+            <h1 class="popup-title">Vill du ändra ditt användarnamn?</h1>
+            <div class="popup-body">
+                <form action="/api/auth/changeName" method="post">
+                    <p>Nytt användarnamn:</p>
+                    <input type="text" name="newName" id="new-name" placeholder="{{ username }}2.0">
+                    <div class="popup-actions">
+                        <input class="popup-action popup-action-yes" type="submit" value="Ändra">
+                        <button class="popup-action popup-action-no">Avbryt</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

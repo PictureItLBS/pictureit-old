@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import appEntrypoint from './app/appEntrypoint.js'
+import docsEntrypoint from './docs/docsEntrypoint.js'
 
 const siteEntrypoint = Router()
 
@@ -13,7 +14,7 @@ siteEntrypoint.get('/register', (req, res) => res.render('pages/auth/register.nj
 // Main app
 siteEntrypoint.use('/app', appEntrypoint)
 
-// Hello World Testing! =D
-siteEntrypoint.get('/helloworld', (req, res) => res.render('pages/helloworld.njk'))
+// Help pages and so on... (Will slowly be implemented I guess...)
+siteEntrypoint.use('/docs', docsEntrypoint)
 
 export default siteEntrypoint

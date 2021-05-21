@@ -1,0 +1,70 @@
+.logo-container, .form-container {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    height: 100%;
+}
+
+.logo-container {
+    right: 15vw;
+}
+
+.form-container {
+    left: 15vw;
+}
+
+.logo {
+    height: 30vmax;
+}
+
+form {
+    width: 50vw;
+    height: fit-content;
+
+    background-color: var(--backdrop);
+    backdrop-filter: blur(20px) opacity(100%);
+
+    padding: 4rem 5rem;
+
+    border-radius: 1.6rem 1.6rem 6.4rem 1.6rem;
+}
+
+h1, p {
+    font-family: 'Lexend Medium';
+    color: var(--primary);
+    margin-bottom: .8em;
+}
+
+input[type="submit"] {
+    display: inline;
+
+    color: var(--surface);
+    background-color: var(--primary);
+
+    margin-top: 1rem;
+}
+
+.help-link {
+    color: var(--primary);
+    font-size: 1.8rem;
+    margin-left: 2rem;
+}
+
+.warning {
+    color: var(--destructive);
+}
+
+input.warning {
+    color: var(--text);
+    background-color: var(--destructive);
+    border-color: var(--destructive);
+}
+
+.last-warning {
+    margin-top: 2rem;
+    margin-bottom: 0;
+}
+
+a, a:visited {
+    color: var(--primary)
+}
