@@ -275,7 +275,7 @@ main.app {
     box-shadow: 0 16px 32px var(--darker);
 
     padding: 4rem 5rem;
-    max-width: 60vw;
+    width: min(200ch, 85%);
 
     display: none;
     grid-template-areas: 'title' 'text' 'actions';

@@ -1,0 +1,18 @@
+<div class="popup-container">
+  <div class="popup popup-upload">
+    <h1 class="popup-title">Ladda upp post</h1>
+    <div class="popup-body">
+        <form action="/api/posts/new" method="post" enctype="multipart/form-data">
+            <input class="input-upload-image" type="file" name="image" id="image">
+            <div class="upload-preview-image-container">
+                <div class="upload-preview-image"></div>
+            </div>
+            <textarea name="caption" id="caption"></textarea>
+            <div class="popup-actions">
+                <input class="popup-action popup-action-yes" type="submit" value="Ladda Upp">
+                <button class="popup-action popup-action-no upload-cancel-btn">Avbryt</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>

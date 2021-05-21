@@ -3,6 +3,7 @@
 <head>
     {% include "../../templates/defaultHeadTags.njk" %}
     <link rel="stylesheet" href="/assets/css/post.css">
+    <link rel="stylesheet" href="/assets/css/forms.css">
     <link rel="stylesheet" href="/assets/css/profile.css">
     <script src="/assets/scripts/profile.js" type="module" defer></script>
     <title>{{ user.name }} - PictureIt</title>
@@ -54,5 +55,6 @@
         </div>
     </main>
     {% include "../../components/quickies.njk" %}
+    {% include "../../components/upload.njk" %}
 </body>
 </html>
