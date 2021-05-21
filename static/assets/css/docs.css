@@ -1,3 +1,9 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 header {
     font-size: 4.8rem;
     text-align: center;
@@ -11,6 +17,10 @@ section {
 
     padding: 3rem 4rem;
     margin: 4rem 8rem;
+
+    font-size: 1.8rem;
+
+    width: min(100ch, 85%);
 }
 
 h1, h2 {
@@ -22,12 +32,13 @@ h1:first-child {
     margin-top: 0;
 }
 
-ul {
+ul, ol {
+    font-family: inherit;
     font-size: 1.8rem;
     margin: 0 0 1rem 3rem;
 }
 
-ul > li {
+ul > li, ol > li {
     margin: .5rem 0;
 }
 
