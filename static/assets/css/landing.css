@@ -1,11 +1,98 @@
-img {
+body {
+    display: grid;
+    grid-template-areas: 'header logo'
+                         'buttons logo';
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
 
-    width: 375px;
-    height: 550px;
-  }
-span.var--primary {
-    color: #53FB5E;
-  }
-span.var--accent {
-  color: #AC53FB;
-  }
+    width: 100vw;
+    min-height: 100vh;
+    padding: 8vh 5vw;
+}
+
+header {
+    grid-area: header;
+    font-size: 18.6rem;
+    font-family: 'Lexend Medium';
+    color: var(--primary);
+    margin-bottom: .75em;
+}
+
+.logo {
+    grid-area: logo;
+    width: 55vmin;
+    height: auto;
+    margin: auto 5vw auto 0;
+}
+
+.buttons {
+    grid-area: buttons;
+    display: flex;
+    flex-direction: column;
+    min-width: 10%;
+    max-width: fit-content;
+}
+
+button {
+    padding: .5em 1em;
+    margin: 2rem 0;
+
+    font-size: 6.4rem;
+    font-family: 'Lexend Regular';
+
+    border-width: .6rem;
+    border-radius: 2rem 2rem 4rem 2rem;
+}
+
+button:hover {
+    border-radius: 3rem 3rem 6rem 3rem;
+}
+
+button.register {
+    color: var(--surface);
+    background-color: var(--primary);
+}
+
+span.accent {
+    color: v
+    ar(--accent);
+    font-family: inherit;
+}
+
+@media screen and (max-width: 1300px) {
+    header {
+        font-size: 14.4rem;
+    }
+
+    .logo {
+        width: 40vmin;
+    }
+
+    button {
+        font-size: 4.8rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    body {
+        grid-template-areas: 'header' 'logo' 'buttons';
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(auto, 3);
+        place-items: center;
+    }
+
+    header {
+        margin-bottom: 0;
+        font-size: 9.6rem;
+    }
+
+    .logo {
+        width: 40vw;
+        margin: 5rem 0;
+    }
+
+    button {
+        font-size: 3.6rem;
+        border-width: .4rem;
+    }
+}

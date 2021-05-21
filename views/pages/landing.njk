@@ -5,9 +5,17 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/landing.css">
     <title>Logga In - PictureIt</title>
 
-    <h1> <span class="var--primary">Picture</span><span class="var--accent">It</span></h1>
 </head>
 <body>
-    <img src="/assets/resources/logo.svg" >
+    <header>
+        Picture<span class="accent">It</span>
+    </header>
+
+    <img class="logo" src="/assets/resources/logo.svg" >
+
+    <div class="buttons">
+        <button class="register" onclick="window.location.pathname = '/register'">Gå Med!</button>
+        <button class="login" onclick="window.location.pathname = '/login'">Logga In!</button>
+    </div>
 </body> 
 </html>
