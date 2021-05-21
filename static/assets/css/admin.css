@@ -27,3 +27,35 @@ form {
     color: var(--destructive);
     margin-top: 2rem;
 }
+
+.user {
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    cursor: unset;
+}
+
+.user-pfp {
+    width: 4rem;
+    height: 4rem;
+    align-self: center;
+    cursor: unset;
+}
+
+.username {
+    margin: 0 2rem;
+    cursor: unset;
+}
+
+.verify, .delete {
+    margin: 1rem;
+}
+
+.verify {
+    margin-left: auto;
+}
+
+.delete {
+    color: var(--destructive);
+    border-color: var(--destructive);
+}
