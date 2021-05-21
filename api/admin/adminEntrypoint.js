@@ -141,4 +141,73 @@ adminApi.post(
     }
 )
 
+adminApi.post(
+    '/deleteUser/:id',
+    async (req, res) => {
+        const decodedToken = verifyToken(req.cookies.apiToken, 2)
+        if (decodedToken.invalid)
+            return decodedToken.action(res)
+
+        const user = await User.findOne({ _id: req.params.id })
+        if (!user)
+            return res.json({
+                success: false,
+                error: "User Does Not Exist"
+            })
+
+        // Delete posts and likes.
+        for (const postID in user.posts) {
+            const post = await Post.findOne({ _id: user.posts[postID] })
+
+            for (const userID in post.likedBy) {
+                const user = await User.findOne({ _id: userID })
+                user.likedPosts.splice(user.likedPosts.indexOf(post._id), 1)
+                await user.updateOne({ likedPosts: user.likedPosts })
+            }
+
+            await Post.deleteOne({ _id: post._id })
+        }
+
+        // Delete own likes.
+        for (const postID in user.likedPosts) {
+            const post = await Post.findOne({ _id: user.likedPosts[postID] })
+
+            if (!post) continue
+
+            post.likedBy?.splice(post?.likedBy?.indexOf(user._id), 1)
+            await post?.updateOne({ likedBy: post?.likedBy })
+
+            const publisher = await User.findOne({ _id: post.publisher })
+            await publisher.updateOne({ likes: publisher.likes - 1 })
+        }
+
+        // Make all followers stop following.
+        for (const targetID in user.followers) {
+            const target = await User.findOne({ _id: user.followers[targetID] })
+
+            if (!target) continue
+
+            target.following.splice(target.following.indexOf(user._id), 1)
+            await target.updateOne({ following: target.following })
+        }
+
+        // Unfollow everyone
+        for (const targetID in user.following) {
+            const target = await User.findOne({ _id: user.following[targetID] })
+
+            if (!target) continue
+
+            target.followers.splice(target.followers.indexOf(user._id), 1)
+            await target.updateOne({ followers: target.followers })
+        }
+
+        // DELETE ACCOUNT
+        await User.deleteOne({ _id: user._id })
+
+        res.json({
+            success: true
+        })
+    }
+)
+
 export default adminApi
