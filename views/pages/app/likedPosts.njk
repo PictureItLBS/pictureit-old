@@ -6,6 +6,7 @@
     <title>Gillade inlägg - PictureIt</title>
 </head>
 <body id="app">
+    {% include "../../components/sidebar.njk" %}
     <main class="app">
         {% import "../../components/post.njk" as postMacro with context %}
         <div class="posts-container">
@@ -14,5 +15,6 @@
             {% endfor %}
         </div>
     </main>
+    {% include "../../components/quickies.njk" %}
 </body>
 </html>

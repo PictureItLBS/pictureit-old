@@ -5,8 +5,14 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/post.css">
     <title>Post av {{ publisher }}</title>
 </head>
-<body class="view-single-post">
-    {% import "../../components/post.njk" as postMacro with context %}
-    {{ postMacro.post(postID, publisher, caption, canDelete, isLiked, likesAmount, publishDate) }}
+<body id="app" class="view-single-post">
+    {% include "../../components/sidebar.njk" %}
+    <main class="app">
+        <div class="posts-container">
+            {% import "../../components/post.njk" as postMacro with context %}
+            {{ postMacro.post(postID, publisher, caption, canDelete, isLiked, likesAmount, publishDate) }}
+        </div>
+    </main>
+    {% include "../../components/quickies.njk" %}
 </body>
 </html>

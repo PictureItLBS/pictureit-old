@@ -1,18 +1,20 @@
-body.view-single-post {
+/* body.view-single-post {
     display: grid;
     place-items: center;
 
     width: 100vw;
     height: 100vh;
-}
-
-body.view-single-post .post {
-    width: 80vw;
-    height: 50vh;
-}
+} */
 
 .posts-container {
     width: 55%;
+
+}
+body.view-single-post .posts-container {
+    width: 70%;
+    height: 100%;
+    display: grid;
+    place-items: center;
 }
 
 .post {
