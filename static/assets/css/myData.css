@@ -5,7 +5,7 @@
     place-items: center start;
 
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .profile-picture {
@@ -66,4 +66,36 @@ a {
 
 #delete-account {
     color: var(--destructive);
+}
+
+.buttons > button {
+    margin: 1rem 3rem 1rem 0;
+}
+
+@media screen and (max-width: 800px) {
+    .my-data--grid {
+        display: grid;
+        grid-template-areas: 'pfp' 'info';
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        place-items: center;
+    }
+
+    .profile-picture {
+        margin: 3rem 0;
+    }
+
+    .info-container {
+        width: 90%;
+        margin: 3rem 0 5vh 0;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .buttons > button {
+        margin: 1rem 0;
+    }
 }
