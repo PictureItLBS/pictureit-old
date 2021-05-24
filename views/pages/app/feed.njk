@@ -16,6 +16,13 @@
                 {{ postMacro.post(post._id, post.publisher, post.caption, post.canDelete, post.isLiked, post.likesAmount, post.date) }}
             {% endfor %}
         </div>
+
+        {% if not posts[0] %}
+            <p style="margin-top: 40vh;">Du följer ingen som har gjort något inlägg.</p>
+            <p>
+                <a href="/app/explore">Utforska inlägg och användare!</a>
+            </p>
+        {% endif %}
     </main>
     {% include "../../components/quickies.njk" %}
     {% include "../../components/upload.njk" %}
