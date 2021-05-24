@@ -3,6 +3,7 @@
 <head>
     {% include "../../templates/defaultHeadTags.njk" %}
     <link rel="stylesheet" type="text/css" href="/assets/css/post.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/forms.css">
     <title>Post av {{ publisher }}</title>
 </head>
 <body id="app" class="view-single-post">
@@ -14,5 +15,6 @@
         </div>
     </main>
     {% include "../../components/quickies.njk" %}
+    {% include "../../components/upload.njk" %}
 </body>
 </html>
