@@ -184,6 +184,18 @@ authApi.post(
         if (decodedToken.invalid)
             return decodedToken.action(res)
 
+        const nameCheck = await User.findOne({ name: req.body.newName })
+        if (nameCheck)
+            return res.status(400).render(
+                'pages/errors/genericError.njk',
+                {
+                    errorSource: "namnbyte av konto",
+                    errorCode: "Account Name Already In Use",
+                    solution: "Det namnet är upptaget! Vänligen välj ett annat. :p",
+                    error: errors.array()
+                }
+            )
+
         const user = await User.findOne({ _id: decodedToken._id })
         await user.updateOne({ name: req.body.newName })
 
