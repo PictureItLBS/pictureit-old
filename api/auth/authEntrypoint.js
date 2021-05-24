@@ -372,7 +372,8 @@ authApi.get('/downloadData', async (req, res) => {
     const zip = new JSZip()
     
     const user = await User.findOne({ _id: decodedToken._id })
-    zip.file(`profilePicture.${user.profilePicture.contentType.split('/')[1]}`, user.profilePicture.data, { base64: true })
+    if (user.profilePicture)
+        zip.file(`profilePicture.${user.profilePicture.contentType.split('/')[1]}`, user.profilePicture.data, { base64: true })
 
     const userJSON = JSON.parse(JSON.stringify(user)) // For some reason doing this is necessary to remove "profilePicture" from the JSON file...
     delete userJSON.profilePicture
