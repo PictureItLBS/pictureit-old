@@ -146,6 +146,10 @@ authApi.post(
                 }
             )
 
+            // Send the user to the their profile page if they are not verified.
+            if (user.permissionLevel == 0)
+                return res.redirect('/app/profile')
+
             // Send the user to the home/feed page.
             res.redirect('/app/home')
         } else {

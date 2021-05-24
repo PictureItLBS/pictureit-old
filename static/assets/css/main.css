@@ -120,12 +120,13 @@ nav.sidebar {
     box-shadow: 8px 0 32px var(--darker);
     background-color: var(--surface);
 
-    height: 100vh;
-
     position: sticky;
     top: 0;
-    
-    padding: 5rem 3rem
+    height: 100vh;
+    padding: 5rem 7rem 5rem 3rem;
+
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar-entry, .sidebar-entry:visited {
@@ -135,6 +136,7 @@ nav.sidebar {
     align-items: center;
 
     margin: 2rem 0;
+    width: fit-content;
 }
 
 .sidebar-entry * {
@@ -157,6 +159,10 @@ nav.sidebar {
 
 .sidebar-entry:hover .icon > *, .sidebar-entry.active .icon > * {
     fill: var(--primary);
+}
+
+.sidebar-entry-news {
+    margin-top: auto;
 }
 
 main.app {
@@ -325,7 +331,7 @@ main.app {
         top: unset;
         bottom: 0;
 
-        display: flex;
+        flex-direction: row;
         justify-content: center;
     }
 

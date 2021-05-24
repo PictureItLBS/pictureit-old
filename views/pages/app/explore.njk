@@ -18,6 +18,12 @@
             <input type="submit" class="search-btn" value="Sök">
         </form>
 
+        <div class="specials">
+            <a href="/app/explore/new" class="special {{ "active" if special == "new" }}"><span class="icon" icon="explore"></span>Senaste</a>
+            <a href="/app/explore/liked" class="special {{ "active" if special == "liked" }}"><span class="icon" icon="like"></span>Gillade</a>
+            <a href="/app/explore/random" class="special {{ "active" if special == "random" }}"><span class="icon" icon="feed"></span>Slumpmässigt</a>
+        </div>
+
         {% if users[0] %}
             <div class="users">
                 <h1 class="users-title">Användare</h1>
@@ -38,10 +44,6 @@
                     {{ postMacro.post(post._id, post.publisher, post.caption, post.canDelete, post.isLiked, post.likesAmount, post.date) }}
                 {% endfor %}
             </div>
-        {% else %}
-            <p>
-                Tyvärr hittades inga inlägg. :'(
-            </p>
         {% endif %}
     </main>
     {% include "../../components/quickies.njk" %}

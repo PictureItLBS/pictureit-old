@@ -3,6 +3,8 @@ import fs from 'fs'
 
 const docsRouter = Router()
 
+docsRouter.get('/', (req, res) => res.render('pages/docs/articleDoesNotExist.njk'))
+
 docsRouter.get('/article/:title', (req, res) => {
     const articleTitle = req.params.title
 

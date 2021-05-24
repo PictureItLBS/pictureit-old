@@ -10,13 +10,12 @@ const appEntrypoint = Router()
 
 
 appEntrypoint.use('/home', feedEntrypoint)
+appEntrypoint.use('/profile', profileEntrypoint)
 
 appEntrypoint.use('/explore', exploreEntrypoint)
-
-appEntrypoint.get('/upload', (req, res) => res.render('pages/app/upload.njk'))
 appEntrypoint.use('/post', postEntrypoint)
 
-appEntrypoint.use('/profile', profileEntrypoint)
+appEntrypoint.get('/news', (req, res) => res.render('pages/app/news.njk'))
 
 appEntrypoint.use('/admin', adminEntrypoint)
 
