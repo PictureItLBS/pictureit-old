@@ -19,9 +19,9 @@
         </form>
 
         <div class="specials">
-            <a href="/app/explore/new" class="special {{ "active" if special == "new" }}"><span class="icon" icon="explore"></span>Senaste</a>
-            <a href="/app/explore/liked" class="special {{ "active" if special == "liked" }}"><span class="icon" icon="like"></span>Gillade</a>
-            <a href="/app/explore/random" class="special {{ "active" if special == "random" }}"><span class="icon" icon="feed"></span>Slumpmässigt</a>
+            <a href="/app/explore/new" class="special {{ "active" if special == "Nya" }}"><span class="icon" icon="explore"></span>Senaste</a>
+            <a href="/app/explore/liked" class="special {{ "active" if special == "Mest Gillade" }}"><span class="icon" icon="like"></span>Gillade</a>
+            <a href="/app/explore/random" class="special {{ "active" if special == "Random" }}"><span class="icon" icon="feed"></span>Random</a>
         </div>
 
         {% if users[0] %}
@@ -38,7 +38,7 @@
 
         {% if posts[0] %}
             {% import "../../components/post.njk" as postMacro with context %}
-            <h1>Inlägg</h1>
+            <h1>{{ special }} Inlägg</h1>
             <div class="posts-container">
                 {% for post in posts %}
                     {{ postMacro.post(post._id, post.publisher, post.caption, post.canDelete, post.isLiked, post.likesAmount, post.date) }}

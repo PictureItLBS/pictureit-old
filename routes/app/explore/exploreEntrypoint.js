@@ -77,7 +77,8 @@ exploreEntrypoint.get('/random', async (req, res) => {
     res.render(
         'pages/app/explore.njk',
         {
-            posts
+            posts,
+            special: "Random"
         }
     )
 })
@@ -109,7 +110,8 @@ exploreEntrypoint.get('/new', async (req, res) => {
     res.render(
         'pages/app/explore.njk',
         {
-            posts
+            posts,
+            special: "Nya"
         }
     )
 })
@@ -146,7 +148,8 @@ exploreEntrypoint.get('/liked', async (req, res) => {
     res.render(
         'pages/app/explore.njk',
         {
-            posts
+            posts,
+            special: "Mest Gillade"
         }
     )
 })

@@ -56,13 +56,9 @@ p {
     font-size: 1.8rem;
 }
 
-a {
+a, a:visited {
     color: var(--link);
     line-height: 1.5;
-}
-
-a:visited {
-    color: var(--link);
 }
 
 

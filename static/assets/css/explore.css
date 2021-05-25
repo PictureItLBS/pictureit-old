@@ -1,7 +1,7 @@
 .searchbar {
     position: sticky;
     top: 3rem;
-    z-index: 1;
+    z-index: 3;
     width: min(50%, 60rem);
 
     margin-top: 5rem;
@@ -66,7 +66,7 @@
     margin-bottom: 5em;
 }
 
-.special {
+.special, .special:visited {
     position: relative;
     z-index: 2;
 
@@ -95,16 +95,16 @@
     opacity: 0.1;
     border-radius: .8rem .8rem 1.6rem .8rem;
 
-    transition: border-radius .3s;
-}
-
-.special:hover::before {
-    border-radius: 1.2rem 1.2rem 2rem 1.2rem;
-    opacity: 0.125;
+    transition: border-radius .3s, opacity .5s;
 }
 
 .special.active::before {
     opacity: 0.15;
+}
+
+.special:hover::before {
+    border-radius: 1.2rem 1.2rem 2rem 1.2rem;
+    opacity: 0.175;
 }
 
 .special > .icon {
