@@ -395,3 +395,22 @@ main.app {
         margin-bottom: 20rem;
     }
 }
+
+
+/*
+    SCROLLBAR
+*/
+::-webkit-scrollbar {
+    background-color: transparent;
+    width: 2.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--standout);
+    border: .75rem solid var(--surface);
+    border-radius: 1.25rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primary);
+}
