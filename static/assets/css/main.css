@@ -62,7 +62,7 @@ a {
 }
 
 a:visited {
-    color: var(--accent);
+    color: var(--link);
 }
 
 
