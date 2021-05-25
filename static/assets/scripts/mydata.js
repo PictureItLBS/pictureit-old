@@ -19,3 +19,5 @@ document.querySelector('.popup-action-download-data').addEventListener('click', 
 document.querySelector('.change-pass-btn').addEventListener('click', ev => popup.show('change-pass'))
 document.querySelector('.change-pfp-btn').addEventListener('click', ev => popup.show('change-pfp'))
 document.querySelector('.change-name-btn').addEventListener('click', ev => popup.show('change-name'))
+document.querySelector('.back-to-profile-btn').addEventListener('click', ev => window.location.pathname = "/app/profile")
+
