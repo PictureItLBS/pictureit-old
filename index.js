@@ -42,7 +42,7 @@ App.use(cookieParser())
 njk.configure(
     'views', 
     {
-        autoescape: true,
+        autoescape: false,
         express: App
     }
 )

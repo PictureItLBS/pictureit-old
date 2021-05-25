@@ -8,7 +8,7 @@
             <h1 class="post-publisher" id="{{ publisher }}">
                 <div class="post-pfp" id="{{ publisher }}"></div>{{ publisher }}
             </h1>
-            <p class="post-caption">{{ caption }}</p>
+            <p class="post-caption">{{ caption | replace("\n", "<br>") }}</p>
             <div class="post-actions">
                 <span class="icon action action-like {{ "active" if isLiked }}" icon="like" id="{{ postID }}"></span>
                 <span class="icon action action-share" icon="share" id="{{ postID }}"></span>
