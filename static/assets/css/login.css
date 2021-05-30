@@ -20,13 +20,29 @@
 form {
     width: 50vw;
     height: fit-content;
+    padding: 4rem 5rem;
 
     background-color: var(--backdrop);
     backdrop-filter: blur(20px) opacity(100%);
 
-    padding: 4rem 5rem;
-
+    box-shadow: 0 16px 32px var(--darker);
     border-radius: 1.6rem 1.6rem 6.4rem 1.6rem;
+}
+
+@supports not (backdrop-filter: blur(20px) opacity(100%)) {
+    form {
+        background-color: var(--darker-backdrop);
+    }
+
+    form input[type="text"], form input[type="password"] {
+        background-color: var(--standout);
+        border-color: var(--standout);
+    }
+
+    
+    form input[type="text"]:focus, form input[type="text"]:active, form input[type="password"]:focus, form input[type="password"]:active {
+        border-color: var(--primary);
+    }
 }
 
 h1, p {

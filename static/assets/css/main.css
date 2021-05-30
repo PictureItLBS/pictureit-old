@@ -318,13 +318,14 @@ main.app {
     }
 
     nav.sidebar {
-        height: fit-content;
+        height: min-content;
         width: 100%;
 
         box-shadow: 0 -8px 32px var(--darker);
         padding: 1.5rem 0;
 
         position: fixed;
+        z-index: 1;
         top: unset;
         bottom: 0;
 
