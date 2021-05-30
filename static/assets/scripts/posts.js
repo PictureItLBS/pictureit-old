@@ -116,4 +116,27 @@ export default function initPosts() {
             window.location.href = `${window.location.origin}/app/profile/user/${element.id}`
         })
     })
+
+    // Make images bigger when clicked.
+    document.querySelectorAll('.post-image-container').forEach(element => {
+        element.addEventListener('click', ev => {
+            if (element.style.position == 'fixed') {
+                element.style.position = 'unset'
+                element.style.width = 'unset'
+                element.style.height = 'unset'
+                element.style.top = 'unset'
+                element.style.left = 'unset'
+                element.style.zIndex = 'unset'
+                element.style.backgroundColor = 'var(--darker)'
+            } else {
+                element.style.position = 'fixed'
+                element.style.width = '100%'
+                element.style.height = '100%'
+                element.style.top = '0'
+                element.style.left = '0'
+                element.style.zIndex = '100'
+                element.style.backgroundColor = 'var(--darker-backdrop)'
+            }
+        })
+    })
 }

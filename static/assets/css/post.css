@@ -30,10 +30,10 @@ body.view-single-post .posts-container {
 
 .post-image-container {
     grid-area: image;
-    display: grid;
-    /* place-items: center; */
 
     background-color: var(--darker);
+    backdrop-filter: blur(20px) opacity(80%);
+
     border-radius: 1rem 0 0 1rem;
 }
 
