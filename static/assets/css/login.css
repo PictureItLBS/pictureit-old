@@ -1,5 +1,5 @@
 .logo-container, .form-container {
-    position: absolute;
+    position: fixed;
     display: grid;
     place-items: center;
     height: 100%;
@@ -83,4 +83,35 @@ input.warning {
 
 a, a:visited {
     color: var(--primary)
+}
+
+@media screen and (max-width: 800px) {
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logo-container, .form-container {
+        position: static;
+        width: 100%;
+        height: min-content;
+        margin: 0;
+    }
+
+    .logo-container {
+        margin-top: 20vmin;
+    }
+
+    .form-container {
+        margin-top: -10vmin;
+    }
+
+    form {
+        width: 80%;
+    }
+/* 
+    .help-link {
+        display: block;
+        margin: 2rem 0;
+    } */
 }
