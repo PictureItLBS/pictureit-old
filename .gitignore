@@ -110,3 +110,4 @@ dist
 # Additions by BurnyLlama
 #
 .env
+.package-lock.json
